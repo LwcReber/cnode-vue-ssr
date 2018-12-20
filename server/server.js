@@ -8,9 +8,8 @@ const apiRouter = require('./routers/api')
 const staticRouter = require('./routers/static')
 const createDb = require('./db/db')
 const userRouter = require('./routers/user')
-const config = require('../app.config')
 
-const db = createDb(config.db.appId, config.db.appKey)
+const db = createDb()
 
 const app = new Koa()
 

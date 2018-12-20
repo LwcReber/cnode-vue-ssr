@@ -34,7 +34,7 @@ serverCompiler.watch({}, (err, stats) => {
 
 const handleSSR = async (ctx) => {
   if (!bundle) {
-    ctx.body = '等会，别急'
+    ctx.body = '拼命加载中...'
     return
   }
 

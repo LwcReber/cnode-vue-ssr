@@ -1,10 +1,10 @@
-const sha1 = require('sha1')
+// const sha1 = require('sha1')
 const axios = require('axios')
 
-const className = 'todo'
+// const className = 'todo'
 
 const request = axios.create({
-  baseURL: 'https://d.apicloud.com/mcm/api' // 注意字段名 别写错大小写
+  baseURL: 'https://cnodejs.org/api/v1' // 注意字段名 别写错大小写
 })
 
 const createError = (code, resp) => {
@@ -21,52 +21,43 @@ const handleRequest = ({status, data, ...rest}) => {
   }
 }
 
-module.exports = (appId, appKey) => {
-  const getHeadders = () => {
-    const now = Date.now()
-    return {
-      'X-APICloud-AppId': appId,
-      'X-APICloud-AppKey': `${sha1(`${appId}UZ${appKey}UZ${now}`)}.${now}`
-    }
-  }
+module.exports = () => {
   return {
-    async getAllTodos () {
-      return handleRequest(await request.get(`/${className}`, {
-        headers: getHeadders()
-      }))
-    },
-    async addTodo (todo) {
-      return handleRequest(await request.post(
-        `/${className}`,
-        todo,
-        {headers: getHeadders()}
-      ))
-    },
-    async updateTodo (id, todo) {
-      return handleRequest(await request.put(
-        `/${className}/${id}`,
-        todo,
-        {headers: getHeadders()}
-      ))
-    },
-    async deleteTodo (id) {
-      return handleRequest(await request.delete(
-        `/${className}/${id}`,
-        {headers: getHeadders()}
-      ))
-    },
-    async deleteComleted (ids) {
-      const requests = ids.map(id => {
-        return {
-          method: 'DELETE',
-          path: `/mcm/api/${className}/${id}`
-        }
-      })
-      return handleRequest(await request.post(
-        '/batch', // 批量处理多个请求
-        {requests},
-        {headers: getHeadders()}
-      ))
+    async getAllTodos (url) {
+      return handleRequest(await request.get(url))
     }
+    // async addTodo (todo) {
+    //   return handleRequest(await request.post(
+    //     `/${className}`,
+    //     todo,
+    //     {headers: getHeadders()}
+    //   ))
+    // },
+    // async updateTodo (id, todo) {
+    //   return handleRequest(await request.put(
+    //     `/${className}/${id}`,
+    //     todo,
+    //     {headers: getHeadders()}
+    //   ))
+    // },
+    // async deleteTodo (id) {
+    //   return handleRequest(await request.delete(
+    //     `/${className}/${id}`,
+    //     {headers: getHeadders()}
+    //   ))
+    // },
+    // async deleteComleted (ids) {
+    //   const requests = ids.map(id => {
+    //     return {
+    //       method: 'DELETE',
+    //       path: `/mcm/api/${className}/${id}`
+    //     }
+    //   })
+    //   return handleRequest(await request.post(
+    //     '/batch', // 批量处理多个请求
+    //     {requests},
+    //     {headers: getHeadders()}
+    //   ))
+    // }
   }
 }
