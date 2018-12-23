@@ -4,10 +4,13 @@ import Vuex from 'vuex'
 import Meta from 'vue-meta'
 import App from './app.vue'
 import createStore from './store/store'
-import createRouter from './config/router'
+import createRouter from './router/router'
 import Notification from './components/notification'
 import Tabs from './components/tabs'
+import 'lib-flexible'
 import './assets/styles/global.styl'
+import './assets/styles/iconfont.styl'
+import './assets/styles/flex.styl'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)

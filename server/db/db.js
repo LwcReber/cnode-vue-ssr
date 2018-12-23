@@ -44,21 +44,22 @@ module.exports = () => {
     },
     async createReplies (params) {
       let para = {accesstoken: '', content: ''}
-      const {topic_id, accesstoken, content} = params
+      const {topicId, accesstoken, content} = params
       para.accesstoken = accesstoken
       para.content = content
       // 如果回复的是别人的评论，则请求添加reply_id属性
       if (params.reply_id) {
         para.reply_id = params.reply_id
       }
-      return handleRequest(await request.post(`/topic/${topic_id}/replies`, para))
+      return handleRequest(await request.post(`/topic/${topicId}/replies`, para))
     },
     async repliesAction (params) {
-      const {reply_id, accesstoken} = params
-      return handleRequest(await request.post(`/reply/${reply_id}/ups`, {accesstoken}))
+      const {replyId, accesstoken} = params
+      return handleRequest(await request.post(`/reply/${replyId}/ups`, {accesstoken}))
     },
     async getUser (params) {
-      return handleRequest(await request.get(`/user/${loginname}`))
+      const {loginName} = params
+      return handleRequest(await request.get(`/user/${loginName}`))
     },
     async checkUser (params) {
       return handleRequest(await request.post('/accesstoken', params))
@@ -69,11 +70,11 @@ module.exports = () => {
     async getAllMsg ({accesstoken, mdrender}) {
       return handleRequest(await request.get('/messages', {params: {accesstoken, mdrender: mdrender || true}}))
     },
-    async msgMarkAll(params) {
+    async msgMarkAll (params) {
       return handleRequest(await request.post('/message/mark_all', params))
     },
-    async msgMarkOne({msg_id, accesstoken}) {
-      return handleRequest(await request.post(`/message/mark_one/${msg_id}`, {accesstoken}))
+    async msgMarkOne ({msgId, accesstoken}) {
+      return handleRequest(await request.post(`/message/mark_one/${msgId}`, {accesstoken}))
     }
   }
 }

@@ -97,5 +97,4 @@ apiRouter
     ctx.body = successResponse(data)
   })
 
-
 module.exports = apiRouter

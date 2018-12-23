@@ -55,7 +55,7 @@ if (isDev) {
       {
         loader: 'postcss-loader',
         options: {
-          sourceMap: true,
+          sourceMap: true
         }
       },
       'stylus-loader'
@@ -63,10 +63,10 @@ if (isDev) {
   })
   config.devtool = '#cheap-module-eval-source-map'
   config.devServer = {
-    port: 8000,
+    port: 8090,
     host: '0.0.0.0',
     overlay: {
-      errors: true,
+      errors: true
     },
     hot: true
   }
@@ -90,13 +90,13 @@ if (isDev) {
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: true,
+              sourceMap: true
             }
           },
           'stylus-loader'
         ]
       })
-    },
+    }
   )
   config.plugins.push(
     new ExtractPlugin('styles.[contentHash:8].css'),

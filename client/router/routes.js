@@ -1,18 +1,13 @@
-// import Todo from '../views/todo/todo.vue'
-// import Login from '../views/login/login.vue'
-
 export default [
   {
     path: '/',
     redirect: '/app'
   },
   {
-    // path: '/app/:id', // /app/xxx
     path: '/app',
     props: true,
     // props: (route) => ({ id: route.query.b }),
-    component: () => import(/* webpackChunkName: "todo-view" */ '../views/todo/todo.vue'), // 添加一段注释
-    // component: Todo,
+    component: () => import(/* webpackChunkName: "todo-view" */ '../views/home/home.vue'), // 添加一段注释
     name: 'app',
     meta: {
       title: 'this is app',
@@ -22,12 +17,6 @@ export default [
       console.log('app route before enter')
       next()
     }
-    // children: [
-    //   {
-    //     path: 'test',
-    //     component: Login
-    //   }
-    // ]
   },
   {
     path: '/login',

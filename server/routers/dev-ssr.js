@@ -40,7 +40,7 @@ const handleSSR = async (ctx) => {
 
   // 开发环境向webpack-dev-server 获取对应的json文件
   const clientManifestResp = await axios.get(
-    'http://127.0.0.1:8000/public/vue-ssr-client-manifest.json'
+    'http://127.0.0.1:8090/public/vue-ssr-client-manifest.json'
   )
 
   const clientManifest = clientManifestResp.data

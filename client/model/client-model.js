@@ -31,28 +31,28 @@ const handleRequest = (request) => {
 }
 
 export default {
-  // 主题首页
-  getTopics (page, tab, limit) {
-    return handleRequest(request.get('/api/getTopics', {page, tab, limit}))
-  },
-  // 主题详情
-  getTopicDetail (id, accesstoken) {
-    return handleRequest(request.get('/api/topicDetail', {id, accesstoken}))
-  },
-  login (username, password) {
-    return handleRequest(request.post('/user/login', {username, password}))
-  },
-  updateTodo (id, todo) {
-    return handleRequest(request.put(`/api/todo/${id}`, todo))
-  },
-  createTodo (todo) {
-    return handleRequest(request.post('/api/todo', todo))
-  },
-  deleteTodo (id) {
-    return handleRequest(request.delete(`/api/todo/${id}`))
-  },
-  deleteAllCompleted (ids) {
-    return handleRequest(request.post('/api/delete/completed', {ids}))
+  // 主题列表
+  getTopics (page, tab, limit, mdrender) {
+    return handleRequest(request.get('/topics', { params: { page, tab, limit, mdrender } }))
   }
+  // // 主题详情
+  // getTopicDetail (id, accesstoken) {
+  //   return handleRequest(request.get('/api/topicDetail', {id, accesstoken}))
+  // },
+  // login (username, password) {
+  //   return handleRequest(request.post('/user/login', {username, password}))
+  // },
+  // updateTodo (id, todo) {
+  //   return handleRequest(request.put(`/api/todo/${id}`, todo))
+  // },
+  // createTodo (todo) {
+  //   return handleRequest(request.post('/api/todo', todo))
+  // },
+  // deleteTodo (id) {
+  //   return handleRequest(request.delete(`/api/todo/${id}`))
+  // },
+  // deleteAllCompleted (ids) {
+  //   return handleRequest(request.post('/api/delete/completed', {ids}))
+  // }
 
 }
