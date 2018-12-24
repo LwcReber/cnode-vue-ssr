@@ -1,22 +1,21 @@
 export default [
   {
     path: '/',
-    redirect: '/app'
+    redirect: '/home'
   },
   {
-    path: '/app',
+    path: '/home',
     props: true,
     // props: (route) => ({ id: route.query.b }),
     component: () => import(/* webpackChunkName: "todo-view" */ '../views/home/home.vue'), // 添加一段注释
-    name: 'app',
-    meta: {
-      title: 'this is app',
-      description: 'asdasd'
-    },
-    beforeEnter (to, from, next) {
-      console.log('app route before enter')
-      next()
-    }
+    name: 'home'
+  },
+  {
+    path: '/hire',
+    props: true,
+    // props: (route) => ({ id: route.query.b }),
+    component: () => import(/* webpackChunkName: "todo-view" */ '../views/hire/hire.vue'), // 添加一段注释
+    name: 'hire'
   },
   {
     path: '/login',

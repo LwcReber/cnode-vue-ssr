@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import App from './app.vue'
+import components from './components'
 
 import 'lib-flexible'
 import './assets/styles/global.styl'
@@ -15,6 +16,13 @@ Vue.use(Vuex)
 
 const router = createRouter()
 const store = createStore()
+
+// 注册组件
+Object.keys(components).forEach((key) => {
+  // 首字母大写
+  var name = key.replace(/(\w)/, (v) => v.toUpperCase())
+  Vue.component(`v${name}`, components[key])
+})
 
 store.subscribeAction((action, state) => {
   console.log(action.type)

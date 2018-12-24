@@ -7,6 +7,8 @@ import createStore from './store/store'
 import createRouter from './router/router'
 import Notification from './components/notification'
 import Tabs from './components/tabs'
+import components from './components'
+
 import 'lib-flexible'
 import './assets/styles/global.styl'
 import './assets/styles/iconfont.styl'
@@ -17,6 +19,13 @@ Vue.use(Vuex)
 Vue.use(Meta)
 Vue.use(Notification)
 Vue.use(Tabs)
+
+// 注册组件
+Object.keys(components).forEach((key) => {
+  // 首字母大写
+  var name = key.replace(/(\w)/, (v) => v.toUpperCase())
+  Vue.component(`v${name}`, components[key])
+})
 
 export default () => {
   const router = createRouter()
