@@ -9,7 +9,7 @@
 
 <script>
   export default {
-     metaInfo: {
+    metaInfo: {
       title: '招聘'
     }
   }

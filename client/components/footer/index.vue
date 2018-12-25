@@ -68,6 +68,7 @@
     left 0
     right 0
     border-top 1px solid #ddd; /*no*/
+    background-color #fff
     .list
       height 90px
     .add

@@ -37,6 +37,7 @@
   .list
     font-size 16px; /*no*/
     padding-bottom 10px
+    background-color #fff
     border-bottom 1px solid #ddd; /*no*/
     .listItem
       height 60px
