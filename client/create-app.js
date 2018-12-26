@@ -9,10 +9,12 @@ import Notification from './components/notification'
 import Tabs from './components/tabs'
 import components from './components'
 
-import 'lib-flexible'
 import './assets/styles/global.styl'
 import './assets/styles/iconfont.styl'
 import './assets/styles/flex.styl'
+if (typeof window !== 'undefined' ) {
+  require('lib-flexible')
+}
 
 Vue.use(VueRouter)
 Vue.use(Vuex)

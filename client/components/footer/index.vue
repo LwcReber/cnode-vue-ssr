@@ -3,34 +3,34 @@
     <div class="row no-gutters taCen list align-items-center">
       <div class="col" :class='pathName == "home" ? "active" : ""' @click="toRoute('home')">
         <div>
-          <i class="iconfont">&#xe64a;</i>
+          <i class="iconfont icon-home"></i>
         </div>
         <div>首页</div>
       </div>
 
       <div class="col" :class='pathName == "hire" ? "active" : ""' @click="toRoute('hire')">
         <div>
-          <i class="iconfont">&#xe64a;</i>
+          <i class="iconfont icon-hire"></i>
         </div>
         <div>招聘</div>
       </div>
 
       <div class="col">
         <div>
-          <i class="iconfont add">&#xe66f;</i>
+          <i class="iconfont add icon-publish"></i>
         </div>
       </div>
 
       <div class="col">
         <div>
-          <i class="iconfont">&#xe64a;</i>
+          <i class="iconfont icon-message"></i>
         </div>
         <div>消息</div>
       </div>
 
       <div class="col">
         <div>
-          <i class="iconfont">&#xe64a;</i>
+          <i class="iconfont icon-my"></i>
         </div>
         <div>我的</div>
       </div>

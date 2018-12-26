@@ -4,12 +4,14 @@ import Vuex from 'vuex'
 import App from './app.vue'
 import components from './components'
 
-import 'lib-flexible'
 import './assets/styles/global.styl'
 import './assets/styles/iconfont.styl'
 import './assets/styles/flex.styl'
 import createRouter from './router/router'
 import createStore from './store/store'
+if (typeof window !== 'undefined' ) {
+  require('lib-flexible')
+}
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
