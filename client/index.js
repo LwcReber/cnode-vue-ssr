@@ -9,9 +9,10 @@ import './assets/styles/iconfont.styl'
 import './assets/styles/flex.styl'
 import createRouter from './router/router'
 import createStore from './store/store'
-if (typeof window !== 'undefined' ) {
-  require('lib-flexible')
-}
+import 'lib-flexible'
+import attachFastClick from 'fastclick'
+attachFastClick(document.body)
+
 
 Vue.use(VueRouter)
 Vue.use(Vuex)

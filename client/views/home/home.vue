@@ -19,7 +19,7 @@
 
 <script>
   import header from './component/header.vue'
-  import listItem from '../../components/listItem/index.vue'
+  import listItem from '@/components/listItem/index.vue'
   export default {
     metaInfo: {
       title: '首页'

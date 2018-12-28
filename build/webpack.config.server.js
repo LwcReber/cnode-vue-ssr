@@ -55,7 +55,8 @@ config = merge(baseConfig, {
 
 config.resolve = {
   alias: {
-    'model': path.join(__dirname, '../client/model/server-model.js')
+    'model': path.join(__dirname, '../client/model/server-model.js'),
+    '@': path.join(__dirname, '../client')
   }
 }
 

@@ -12,8 +12,10 @@ import components from './components'
 import './assets/styles/global.styl'
 import './assets/styles/iconfont.styl'
 import './assets/styles/flex.styl'
-if (typeof window !== 'undefined' ) {
+if (typeof window !== 'undefined') {
   require('lib-flexible')
+  const FastClick = require('fastclick');
+  FastClick.attach(document.body);
 }
 
 Vue.use(VueRouter)
