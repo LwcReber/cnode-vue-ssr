@@ -1,4 +1,5 @@
 const path = require('path')
+var utils = require('./util')
 const HTMLPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
@@ -45,22 +46,7 @@ if (isDev) {
   config = merge(baseConfig, {
     devtool: '#cheap-module-eval-source-map',
     module: {
-      rules: [
-        {
-          test: /\.styl/,
-          use: [
-            'vue-style-loader',
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                sourceMap: true
-              }
-            },
-            'stylus-loader'
-          ]
-        }
-      ]
+      rules: utils.styleLoaders({ sourceMap: true, usePostCSS: true })
     },
     devServer,
     plugins: defaultPluins.concat([

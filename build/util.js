@@ -11,9 +11,21 @@ exports.cssLoaders = function (options) {
     }
   }
 
+  const postcssLoader = {
+    loader: 'postcss-loader',
+    options: {
+      sourceMap: options.sourceMap,
+      plugins: function () {
+        return [
+          require('postcss-px2rem')({remUnit: 75})
+        ]
+      }
+    }
+  }
+
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
-    var loaders = [cssLoader]
+    const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
@@ -32,18 +44,6 @@ exports.cssLoaders = function (options) {
       })
     } else {
       return ['vue-style-loader'].concat(loaders)
-    }
-  }
-
-  const postcssLoader = {
-    loader: 'postcss-loader',
-    options: {
-      sourceMap: options.sourceMap,
-      plugins: function () {
-        return [
-          require('postcss-px2rem')({remUnit: 75})
-        ]
-      }
     }
   }
 

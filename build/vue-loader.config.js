@@ -9,6 +9,7 @@ module.exports = (isDev) => {
     //   camelCase: true
     // },
     loaders: utils.cssLoaders({
+      sourceMap: true,
       extract: !isDev
     }),
     postcss: [

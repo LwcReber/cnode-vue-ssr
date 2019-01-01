@@ -1,2 +1,3 @@
 import footer from './footer/index.vue'
-export default { footer }
+import scroll from './scroll/index.vue'
+export default { footer, scroll }

@@ -1,13 +1,9 @@
 import model from 'model'
-import notify from '../../components/notification/function'
 import bus from '../../util/bus'
 
 const handleError = (err) => {
   // console.log(err)
   if (err.code === 401) {
-    notify({
-      content: '请登录'
-    })
     // 使用新vue对象，事件总线，触发一个事件
     bus.$emit('auth')
   }
@@ -40,9 +36,9 @@ export default {
       .then(data => {
         commit('endLoading')
         commit('addTodo', data)
-        notify({
-          content: '你又多了一件事要做'
-        })
+        // notify({
+        //   content: '你又多了一件事要做'
+        // })
       }).catch(err => {
         commit('endLoading')
         handleError(err)
@@ -65,9 +61,9 @@ export default {
       .then(data => {
         commit('endLoading')
         commit('deleteTodo', id)
-        notify({
-          content: '你又少了一件事要做'
-        })
+        // notify({
+        //   content: '你又少了一件事要做'
+        // })
       }).catch(err => {
         commit('endLoading')
         handleError(err)
@@ -81,9 +77,9 @@ export default {
       .then(() => {
         commit('endLoading')
         commit('deleteAllCompleted')
-        notify({
-          content: '清理一下。。。 '
-        })
+        // notify({
+        //   content: '清理一下。。。 '
+        // })
       }).catch(err => {
         handleError(err)
       })
@@ -96,13 +92,13 @@ export default {
         .then(data => {
           commit('endLoading')
           commit('doLogin', data)
-          notify({content: '登录成功'})
+          // notify({content: '登录成功'})
           resolve()
         }).catch(err => {
           commit('endLoading')
-          notify({
-            content: '抱歉，登录失败，请确认用户名或者密码是否正确'
-          })
+          // notify({
+          //   content: '抱歉，登录失败，请确认用户名或者密码是否正确'
+          // })
           handleError(err)
           reject(err)
         })

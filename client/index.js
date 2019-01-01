@@ -13,7 +13,6 @@ import 'lib-flexible'
 import attachFastClick from 'fastclick'
 attachFastClick(document.body)
 
-
 Vue.use(VueRouter)
 Vue.use(Vuex)
 

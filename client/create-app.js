@@ -5,23 +5,20 @@ import Meta from 'vue-meta'
 import App from './app.vue'
 import createStore from './store/store'
 import createRouter from './router/router'
-import Notification from './components/notification'
 import Tabs from './components/tabs'
 import components from './components'
-
 import './assets/styles/global.styl'
 import './assets/styles/iconfont.styl'
 import './assets/styles/flex.styl'
 if (typeof window !== 'undefined') {
   require('lib-flexible')
-  const FastClick = require('fastclick');
-  FastClick.attach(document.body);
+  const FastClick = require('fastclick')
+  FastClick.attach(document.body)
 }
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(Meta)
-Vue.use(Notification)
 Vue.use(Tabs)
 
 // 注册组件
