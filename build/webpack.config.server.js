@@ -1,6 +1,4 @@
 const path = require('path')
-var utils = require('./util')
-
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.config.base')
@@ -31,9 +29,6 @@ config = merge(baseConfig, {
     path: path.join(__dirname, '../server-build')
   },
   externals: Object.keys(require('../package.json').dependencies), // 不打包这些文件
-  module: {
-    rules: utils.styleLoaders({ sourceMap: true, usePostCSS: true })
-  },
   plugins
 })
 

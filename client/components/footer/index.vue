@@ -67,8 +67,11 @@
     bottom 0
     left 0
     right 0
+    height 90px
+    box-sizing border-box
     border-top 1px solid #ddd; /*no*/
     background-color #fff
+    z-index 999
     .list
       height 90px
     .add

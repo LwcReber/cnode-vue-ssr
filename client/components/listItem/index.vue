@@ -43,7 +43,7 @@
 
 <style lang="stylus" scoped>
   .listItem
-    margin 10px
+    margin 20px
     box-sizing border-box
     background-color #fff
     border-radius 3px;/*no*/

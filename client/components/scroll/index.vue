@@ -1,58 +1,172 @@
 <template>
   <div>
-    <div ref="mescroll" class="mescroll">
-      <!--内容...-->
-      <slot></slot>
-    </div>
+    <slot></slot>
   </div>
 </template>
 
 <script>
-// 引入mescroll的vue组件
-// 引入mescroll.min.js和mescroll.min.css
-// import './mescroll.min.css';
-// import './test.css';
-
-// import MeScroll from 'mescroll.js'
-import MescrollVue from "mescroll.js/mescroll.vue";
+// demo来自 https://github.com/yangqihua/vue-scroll-mobile-demo
+import MeScroll from 'mescroll.js'
+import 'mescroll.js/mescroll.min.css'
+import totop from './mescroll-totop.png'
+import empty from './mescroll-empty.png'
+// 创建vue对象
 export default {
-  components: {
-    MescrollVue // 注册mescroll组件
+  props: {
+    upCallback: {
+      type: Function,
+      default: null
+    },
+    onScroll: {
+      type: Function,
+      default: null
+    },
+    emptyDataBtnClick: {
+      type: Function,
+      default: null
+    },
+    top: {
+      type: String,
+      default: '0'
+    },
+    bottom: {
+      type: String,
+      default: '0'
+    },
+    toTopClass: {
+      type: String,
+      default: 'mescroll-totop'
+    },
+    upAuto: {
+      type: Boolean,
+      default: true
+    },
+    warpId: {
+      type: String,
+      default: 'mescroll'
+    },
+    upUse: {
+      type: Boolean,
+      default: true
+    },
+    scrollId: {
+      type: String,
+      default: 'body'
+    },
+    scrollTop: {
+      type: Number,
+      default: 0
+    },
+    size: {
+      type: Number,
+      default: 8
+    }
   },
-  data() {
+  data () {
     return {
-      mescroll: null, // mescroll实例对象
-
-      dataList: [] // 列表数据
-    };
+      mescroll: null,
+      scrollIds: {}
+    }
   },
-  beforeRouteEnter(to, from, next) {
-    // 如果没有配置回到顶部按钮或isBounce,则beforeRouteEnter不用写
-    next(vm => {
-      // 找到当前mescroll的ref,调用子组件mescroll-vue的beforeRouteEnter方法
-      vm.$refs.mescroll && vm.$refs.mescroll.beforeRouteEnter(); // 进入路由时,滚动到原来的列表位置,恢复回到顶部按钮和isBounce的配置
-    });
-  },
-  beforeRouteLeave(to, from, next) {
-    // 如果没有配置回到顶部按钮或isBounce,则beforeRouteLeave不用写
-    // 找到当前mescroll的ref,调用子组件mescroll-vue的beforeRouteEnter方法
-    this.$refs.mescroll && this.$refs.mescroll.beforeRouteLeave(); // 退出路由时,记录列表滚动的位置,隐藏回到顶部按钮和isBounce的配置
-    next();
+  // mounted的时候会触发滚动加载
+  mounted () {
+    // 创建Mescroll对象,down可以不用配置,因为内部已默认开启下拉刷新,重置列表数据为第一页
+    // 解析: 下拉回调默认调用mescroll.resetUpScroll(); 而resetUpScroll会将page.num=1,再执行up.callback,从而实现刷新列表数据为第一页;
+    let self = this
+    this.mescroll = new MeScroll(self.scrollId, {
+      down: {use: true},
+      up: {
+        use: self.upUse,
+        auto: self.upAuto,
+        callback: self.upCallback, // 上拉回调
+        page: {size: this.size}, // 可配置每页8条数据,默认30
+        toTop: { // 配置回到顶部按钮
+          src: totop, // 默认滚动到1000px显示,可配置offset修改
+          offset: 1000,
+          warpClass: self.toTopClass
+        },
+        noMoreSize: 5, // 如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看; 默认5
+        empty: { // 配置列表无任何数据的提示
+          warpId: self.warpId,
+          icon: empty, // empty,
+          tip: '暂无相关数据哦~',
+          btntext: '', // "去逛逛~",
+          btnClick: ''// self.emptyDataBtnClick || self.btnClick,
+        },
+        onScroll: self.onScroll,
+        warpId: self.warpId,
+        htmlNodata: '<p class="upwarp-nodata">暂无更多数据哦~</p>',
+        scrollbar: {use: true, barClass: 'mescroll-bar'},
+        htmlLoading: '<p class="upwarp-progress mescroll-rotate"></p><p class="upwarp-tip">加载中..</p>'
+      }
+    })
   },
   methods: {
-    // mescroll组件初始化的回调,可获取到mescroll对象
-    mescrollInit(mescroll) {
-      // 创建MeScroll对象
-      // this.mescroll = new MeScroll(this.$refs.mescroll, { // 在mounted初始化mescroll,确保此处配置的ref有值
-      //   // down:{}, //下拉刷新的配置. (如果下拉刷新和上拉加载处理的逻辑是一样的,则down可不用写了)
-      //   up: {
-      //   callback: this.upCallback
-      // }
-      // })
+    // 上拉回调 page = {num:1, size:10}; num:当前页 ,默认从1开始; size:每页数据条数,默认10
+    endSuccess (curPageDataLength) {
+      this.mescroll && this.mescroll.endSuccess(curPageDataLength)
+    },
+    // (推荐): 后台接口有返回列表的总数据量 totalSize
+    // endSuccess(curPageDataLength, totalSize){
+    //   this.mescroll && this.mescroll.endSuccess(curPageDataLength, totalSize);
+    // },
+    endErr () {
+      this.mescroll && this.mescroll.endErr()
+    },
+    deactivated () {
+      this.mescroll && this.mescroll.deactivated()
+    },
+    activated () {
+      if (!(this.mescroll && this.mescroll.beActivated)) {
+        this.mescroll.activated()
+      }
+    },
+    getScrollTop () {
+      if (this.mescroll) {
+        return this.mescroll.getScrollTop()
+      }
+      return 0
+    },
+    scrollTo (top, duration) {
+      this.mescroll && this.mescroll.scrollTo(top, duration)
+    },
+    btnClick () {
+      // alert('点击了去逛逛按钮,请具体实现业务逻辑')
+    },
+    hideTopBtn () {
+      this.mescroll && this.mescroll.hideTopBtn()
+    },
+    resetUpScroll () {
+      this.mescroll && this.mescroll.resetUpScroll()
     }
+  },
+  computed: {
+    list () {
+      return this.$store.state.base_data.list
+    }
+  },
+  destroyed () {
+    this.mescroll && this.mescroll.destroy()
+  },
+  deactivated () {
+    this.deactivated()
+    let warpId = this.warpId
+    let scrollMap = {}
+    scrollMap[warpId] = this.mescroll.preScrollY
+    this.$store.dispatch('setScrollTop', scrollMap)
+  },
+  activated () {
+    this.activated()
+    let scrollTop = 0
+    if (this.$store.state.scrollTops.hasOwnProperty(this.warpId)) {
+      scrollTop = this.$store.state.scrollTops[this.warpId]
+    }
+    this.scrollTo(scrollTop, 0)
   }
-};
+}
 </script>
-
-<style scoped>
+<style lang="stylus">
+  .mescroll-totop
+    background none
+    bottom 180px
 </style>

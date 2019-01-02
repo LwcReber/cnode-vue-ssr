@@ -1,5 +1,6 @@
 const path = require('path')
 const createVueLoaderOptions = require('./vue-loader.config')
+const utils = require('./util')
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -13,6 +14,7 @@ const config = {
   },
   module: {
     rules: [
+      ...utils.styleLoaders({ sourceMap: true, usePostCSS: true }),
       // {
       //   test: /\.(vue|js|jsx)$/,
       //   loader: 'eslint-loader',

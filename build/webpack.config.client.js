@@ -1,5 +1,4 @@
 const path = require('path')
-var utils = require('./util')
 const HTMLPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
@@ -45,9 +44,6 @@ let config
 if (isDev) {
   config = merge(baseConfig, {
     devtool: '#cheap-module-eval-source-map',
-    module: {
-      rules: utils.styleLoaders({ sourceMap: true, usePostCSS: true })
-    },
     devServer,
     plugins: defaultPluins.concat([
       new webpack.HotModuleReplacementPlugin(),
@@ -64,26 +60,6 @@ if (isDev) {
       // path: path.join(__dirname, '../dist'),
       filename: '[name].[chunkhash:8].js',
       publicPath: '/public/'
-    },
-    module: {
-      rules: [
-        {
-          test: /\.styl/,
-          use: ExtractPlugin.extract({
-            fallback: 'vue-style-loader',
-            use: [
-              'css-loader',
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: true
-                }
-              },
-              'stylus-loader'
-            ]
-          })
-        }
-      ]
     },
     plugins: defaultPluins.concat([
       new ExtractPlugin('styles.[contentHash:8].css'),
