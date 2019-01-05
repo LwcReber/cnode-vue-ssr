@@ -8,6 +8,7 @@ import createRouter from './router/router'
 import Tabs from './components/tabs'
 import components from './components'
 
+import './assets/styles/reset.css'
 import './assets/styles/theme.styl'
 import './assets/styles/global.styl'
 import './assets/styles/iconfont.styl'

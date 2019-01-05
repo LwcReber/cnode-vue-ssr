@@ -15,13 +15,13 @@
         <div>招聘</div>
       </div>
 
-      <div class="col">
+      <div class="col" @click="toRoute('publish')">
         <div>
           <i class="iconfont add icon-publish"></i>
         </div>
       </div>
 
-      <div class="col">
+      <div class="col"  :class='pathName == "message" ? "active" : ""' @click="toRoute('message')">
         <div>
           <i class="iconfont icon-message"></i>
         </div>

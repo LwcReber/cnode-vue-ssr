@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- header -->
-    <v-header class="head" @changeTab="changeTab"/>
+    <v-nav class="head" :list="navs" @changeTab="changeTab"/>
 
     <!-- content -->
     <ListScroll  class="scroller"  :upCallback="loadList" ref="mescroll" warpId="index_scroll" id="index_scroll">
@@ -16,17 +16,24 @@
 </template>
 
 <script>
-  import header from './component/header.vue'
+  import nav from '@/components/nav/index.vue'
   import listItem from '@/components/listItem/index.vue'
   import ListScroll from '@/components/scroll/index.vue'
   export default {
     metaInfo: {
       title: '首页'
     },
-    components: {'v-header': header, listItem, ListScroll},
+    components: {listItem, ListScroll, 'v-nav': nav},
     data () {
       return {
-        dataList: []
+        dataList: [],
+        navs: [
+          {name: '全部', value: ''},
+          {name: '精华', value: 'good'},
+          {name: '分享', value: 'share'},
+          {name: '问答', value: 'ask'},
+          {name: '测试', value: 'dev'}
+        ]
       }
     },
     methods: {

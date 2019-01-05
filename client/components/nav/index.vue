@@ -1,29 +1,35 @@
 <template>
   <div class="list">
     <div class="tab row no-gutters taCen align-items-center">
-      <div class="col listItem" :style="{width: tabWidth+'px'}" @click="changTab(index)" v-for="(item, index) in list" :key="item.value">
-        <div class="content">
+      <div :class="['col', 'listItem', (rigBor && ( index !== list.length - 1 )) ? 'rigBor': '' ]"
+        :style="{ width: tabWidth + 'px' }"
+        @click="changTab(index)" v-for="(item, index) in list" :key="item.value">
+        <div class="content" :class="curIndex == index ? 'active': ''">
           {{item.name}}
         </div>
       </div>
     </div>
-    <div class="bar" :style="{width: barWidth+'px', left: barLeft}"></div>
+    <div class="bar" :style="{width: barWidth + 'px', left: barLeft}"></div>
   </div>
 </template>
 
 <script>
   export default {
+    props: {
+      list: Array,
+      rigBor: {
+        type: Boolean,
+        default: false
+      },
+      // tab底部高亮线的宽度
+      barWidth: {
+        type: [Number, String],
+        default: 32
+      }
+    },
     data () {
       return {
-        barWidth: 32, // tab底部红色线的宽度
-        curIndex: 0,
-        list: [
-          {name: '全部', value: ''},
-          {name: '精华', value: 'good'},
-          {name: '分享', value: 'share'},
-          {name: '问答', value: 'ask'},
-          {name: '测试', value: 'dev'}
-        ]
+        curIndex: 0
       }
     },
     computed: {
@@ -34,7 +40,7 @@
           return 0
         }
       },
-      barLeft () { // 红线的位置
+      barLeft () { // 下划线的位置
         return (this.tabWidth * this.curIndex + (this.tabWidth - this.barWidth) / 2) + 'px'
       }
     },
@@ -59,10 +65,17 @@
       height 60px
       line-height 60px
 
+     .rigBor
+      border-right 1px solid #ccc
+
   .content
     display inline-block
     white-space nowrap
     height 100%
+    color #aaa
+    &.active
+      color: #4d4d4d
+
 
   .bar
     position: relative;

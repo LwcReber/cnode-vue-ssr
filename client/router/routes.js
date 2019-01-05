@@ -5,17 +5,27 @@ export default [
   },
   {
     path: '/home',
+    name: 'home',
     props: true,
-    // props: (route) => ({ id: route.query.b }),
-    component: () => import(/* webpackChunkName: "todo-view" */ '../views/home/home.vue'), // 添加一段注释
-    name: 'home'
+    component: () => import(/* webpackChunkName: "todo-view" */ '../views/home/home.vue') // 添加一段注释
   },
   {
     path: '/hire',
+    name: 'hire',
     props: true,
-    // props: (route) => ({ id: route.query.b }),
-    component: () => import(/* webpackChunkName: "todo-view" */ '../views/hire/hire.vue'), // 添加一段注释
-    name: 'hire'
+    component: () => import(/* webpackChunkName: "todo-view" */ '../views/hire/hire.vue') // 添加一段注释
+  },
+  {
+    path: '/publish',
+    name: 'publish',
+    props: true,
+    component: () => import(/* webpackChunkName: "todo-view" */ '../views/publish/publish.vue') // 添加一段注释
+  },
+  {
+    path: '/message',
+    name: 'message',
+    props: true,
+    component: () => import(/* webpackChunkName: "todo-view" */ '../views/message/message.vue') // 添加一段注释
   },
   {
     path: '/login',

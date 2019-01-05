@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import App from './app.vue'
 import components from './components'
 
+import './assets/styles/reset.css'
 import './assets/styles/theme.styl'
 import './assets/styles/global.styl'
 import './assets/styles/iconfont.styl'
