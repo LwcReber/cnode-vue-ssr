@@ -1,4 +1,5 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const path = require('path')
 
 exports.cssLoaders = function (options) {
   options = options || {}
@@ -47,6 +48,13 @@ exports.cssLoaders = function (options) {
     }
   }
 
+  // 配置主题文件，可以全局使用这个文件的变量
+  const stylusOptions = {
+    import: [
+      path.join(__dirname, '../client/assets/styles/theme.styl')
+    ]
+  }
+
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html
   return {
     css: generateLoaders(),
@@ -54,8 +62,8 @@ exports.cssLoaders = function (options) {
     less: generateLoaders('less'),
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
-    stylus: generateLoaders('stylus'),
-    styl: generateLoaders('stylus')
+    stylus: generateLoaders('stylus', stylusOptions),
+    styl: generateLoaders('stylus', stylusOptions)
   }
 }
 

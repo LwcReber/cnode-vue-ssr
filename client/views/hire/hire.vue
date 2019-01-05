@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ListScroll  class="scroller"  :upCallback="loadList" ref="mescroll" warpId="index_scroll" id="index_scroll">
+    <ListScroll  class="scroller"  :upCallback="loadList" ref="mescroll" warpId="hire_scroll" id="hire_scroll">
       <div>
         <listItem v-for="(item, idx) in dataList" :key="idx"/>
       </div>

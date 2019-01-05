@@ -43,7 +43,7 @@
 
 <style lang="stylus" scoped>
   .listItem
-    margin 20px
+    margin 25px 20px
     box-sizing border-box
     background-color #fff
     border-radius 3px;/*no*/
@@ -63,8 +63,8 @@
     .name
       padding-left 10px
     .logo
-      width 40px
-      height 40px
+      width 20px; /*no*/
+      height 20px; /*no*/
       border-radius 50%
     .count
       padding 0 10px

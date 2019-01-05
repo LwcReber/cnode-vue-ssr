@@ -168,5 +168,5 @@ export default {
 <style lang="stylus">
   .mescroll-totop
     background none
-    bottom 180px
+    bottom 180px !important
 </style>

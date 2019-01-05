@@ -4,9 +4,11 @@ import Vuex from 'vuex'
 import App from './app.vue'
 import components from './components'
 
+import './assets/styles/theme.styl'
 import './assets/styles/global.styl'
 import './assets/styles/iconfont.styl'
 import './assets/styles/flex.styl'
+
 import createRouter from './router/router'
 import createStore from './store/store'
 import 'lib-flexible'

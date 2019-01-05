@@ -51,10 +51,9 @@
     top 0
     left 0
     right 0
-    height 72px
     background-color #ffffff
     z-index 100
   .scroller
-    padding-top 72px
-    padding-bottom 92px
+    padding-top 86px
+    padding-bottom 100px
 </style>

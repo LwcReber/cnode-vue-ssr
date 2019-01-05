@@ -7,9 +7,12 @@ import createStore from './store/store'
 import createRouter from './router/router'
 import Tabs from './components/tabs'
 import components from './components'
+
+import './assets/styles/theme.styl'
 import './assets/styles/global.styl'
 import './assets/styles/iconfont.styl'
 import './assets/styles/flex.styl'
+
 if (typeof window !== 'undefined') {
   require('lib-flexible')
   const FastClick = require('fastclick')
