@@ -28,7 +28,7 @@
         <div>消息</div>
       </div>
 
-      <div class="col">
+      <div class="col" :class='pathName == "my" ? "active" : ""'  @click="toRoute('my')">
         <div>
           <i class="iconfont icon-my"></i>
         </div>

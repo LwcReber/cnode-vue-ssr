@@ -28,6 +28,12 @@ export default [
     component: () => import(/* webpackChunkName: "todo-view" */ '../views/message/message.vue') // 添加一段注释
   },
   {
+    path: '/my',
+    name: 'my',
+    props: true,
+    component: () => import(/* webpackChunkName: "todo-view" */ '../views/my/my.vue') // 添加一段注释
+  },
+  {
     path: '/login',
     component: () => import(/* webpackChunkName: "login-view" */ '../views/login/login.vue')
   }
