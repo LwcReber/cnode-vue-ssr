@@ -74,7 +74,7 @@
     height 100%
     color #aaa
     &.active
-      color: #4d4d4d
+      color: themeColor
 
 
   .bar

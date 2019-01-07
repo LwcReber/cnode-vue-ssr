@@ -1,5 +1,5 @@
 <template>
-  <div class="listItem">
+  <div class="listItem" @click="toDetail">
         <div class="row title no-gutters">
           <div class="col one-line">
             fjasdiopfjasdpoi发泡地方就富士达皮杰泡地方就富士达皮杰泡地方就富士达皮杰
@@ -37,6 +37,11 @@
   export default {
     props: {
       data: Object
+    },
+    methods: {
+      toDetail () {
+        this.$router.push({name: 'detail', query: {id: 1}})
+      }
     }
   }
 </script>

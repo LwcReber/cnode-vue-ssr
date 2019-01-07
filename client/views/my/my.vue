@@ -1,20 +1,18 @@
 <template>
   <div>
-    <section>
-      <div class="row no-gutters align-items-center">
-        <img class="logo" src="http://img5.imgtn.bdimg.com/it/u=832192736,1053576081&fm=26&gp=0.jpg" alt="">
+    <section class="top">
+      <div class="taCen">
         <div>
-          <div>
-            用户名
-          </div>
-          <div>
-            积分：9
-          </div>
+          <img class="logo" src="http://img5.imgtn.bdimg.com/it/u=832192736,1053576081&fm=26&gp=0.jpg" alt="">
+        </div>
+        <div class="name">
+          Reber
+        </div>
+        <div class="count">
+          积分：9
         </div>
       </div>
     </section>
-
-    <div></div>
 
     <section>
       <div>
@@ -24,7 +22,6 @@
         <Item icon="icon-about" title="关于cnode"/>
         <Item icon="icon-aboutme" title="关于我"/>
       </div>
-
     </section>
      <!-- footer -->
     <v-footer></v-footer>
@@ -39,10 +36,19 @@
 </script>
 
 <style lang="stylus" scoped>
+  .top
+    background url('../../assets/images/bg.jpg') 100% no-repeat
   .logo
-    width 120px
-    height 120px
-    margin-right 100px
-    margin-left 15px
+    margin 20px 0
+    width 200px
+    height 200px
     border-radius 50%
+  .name
+    font-size 20px;/*no*/
+    color #000
+    font-weight bold
+  .count
+    font-size 16px;/*no*/
+    padding-bottom 50px
+    color #222
 </style>

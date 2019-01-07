@@ -25,7 +25,7 @@
 
 <style lang="stylus" scoped>
   .item
-    min-height 80px
+    min-height 100px
     padding-left 15px
     background-color #fff
     border-bottom 1px solid #ddd;/*no*/
