@@ -1,33 +1,37 @@
 <template>
-    <form class="login-form" @submit="doSubmit" autocomplete="off">
-      <h1>
-        <span>Login</span>
-        <span class="error-msg" v-show="errorMsg">{{errorMsg}}</span>
-      </h1>
-      <input
-        type="text"
-        class="login-input"
-        placeholder="User name"
-        v-model="username"
-      >
-      <input
-        type="password"
-        class="login-input"
-        placeholder="password"
-        autocomplete="new-password"
-        v-model="password"
-      >
-      <button type="submit" class="login-btn">登 录</button>
-    </form>
+  <div class="container">
+    <topNav>
+      <span slot="center">登录</span>
+    </topNav>
+    <div class="row no-gutters form-container flex-column justify-content-center align-items-center">
+      <form class="login-form" @submit="doSubmit" autocomplete="off">
+        <div>
+          <input
+            type="text"
+            class="login-input"
+            placeholder="请输入accesstoken"
+            v-model="username"
+          >
+        </div>
+        <div>
+          <button type="submit" class="login-btn">登 录</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>
+
   import {
     mapActions
   } from 'vuex'
+
+  import topNav from '@/components/topNav/index.vue'
   export default {
+    components: { topNav },
     metaInfo: {
-      title: 'login page'
+      title: '登录'
     },
     data () {
       return {
@@ -68,49 +72,30 @@
 </script>
 
 <style lang="stylus" scoped>
-.login-form
-  display flex
-  flex-direction column
-  align-items flex-start
-  width 350px
-  margin 0 auto
-  padding 20px
-  background-color #fff
-  h1
-    font-weight 100
-    color #3d3d3d
-.login-input
-  appearance none
-  padding 0 10px
-  line-height 30px
-  margin-bottom 20px
-  border 1px solid #aaa
-  width 100%
-  border-radius 0
-  box-shadow 0 0 0
-.login-btn
-  appearance none
-  width 100%
-  line-height 30px
-  text-align center
-  background-color #0d60c7
-  color #eaeaea
-  cursor pointer
-  border-color #0d60c7
-  transition all .3s
-  &:hover
-    color #fff
-    background-color darken(#0d60c7, 10)
-.error-msg
-  font-size 12px
-  color red
 
-@media screen and (max-width: 600px) {
-  .login-form {
-    width 90%
-  }
-  .login-input{
-    line-height 40px
-  }
-}
+  .form-container
+    position absolute
+    left 0
+    top 80px
+    right 0
+    bottom 0
+    background-color #fff
+
+    .login-form
+      width 550px
+      height 250px
+      padding 50px
+      text-align center
+    .login-input
+      width 95%;
+      height 70px
+      padding-left 10px
+      border 1px solid #ddd;/*no*/
+
+    .login-btn
+      margin-top 50px
+      width 95%
+      height 70px
+      background-color themeColor
+      color #fff
 </style>

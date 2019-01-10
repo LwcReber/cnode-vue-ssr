@@ -23,7 +23,7 @@ const defaultPluins = [
 
 const devServer = {
   port: 8090,
-  host: '0.0.0.0',
+  host: '127.0.0.1',
   overlay: {
     errors: true
   },
@@ -31,6 +31,7 @@ const devServer = {
   historyApiFallback: {
     index: '/public/index.html'
   },
+  compress: true,
   // 跨域处理
   proxy: {
     '/api': 'http://127.0.0.1:3333',

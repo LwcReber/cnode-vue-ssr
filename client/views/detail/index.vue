@@ -1,23 +1,22 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-2">返回</div>
-      <div class="col-8">放假啊谁都怕发送到破解</div>
-      <div class="col-2">*</div>
-    </div>
+    <topNav>
+      <span slot="center">标题标题</span>
+    </topNav>
+
 
     <div>
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores adipisci laudantium, dolorem veniam quam molestiae voluptatum veritatis labore ullam laboriosam, unde quidem nobis blanditiis. Ea, voluptatibus nobis. Porro, aspernatur. Delectus?
     </div>
 
     <div>
-      <div class="row">
+      <div class="row no-gutters">
         <img class="headpic" src="http://img0.imgtn.bdimg.com/it/u=4199990901,4162160503&fm=26&gp=0.jpg" alt="">
         <div>
           Reber
         </div>
         <div>
-          <i class="iconfont icon-my"></i>2
+          <i class="iconfont icon-my"></i>
           <i class="iconfont icon-my"></i>
         </div>
       </div>
@@ -29,8 +28,15 @@
 </template>
 
 <script>
-  export default {
+  import topNav from '@/components/topNav/index.vue'
 
+  export default {
+    components: { topNav },
+    data () {
+      return {
+
+      }
+    }
   }
 </script>
 
