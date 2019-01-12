@@ -14,7 +14,7 @@
           >
         </div>
         <div>
-          <button type="submit" class="login-btn">登 录</button>
+          <button type="submit" class="btn btn-login">登 录</button>
         </div>
       </form>
     </div>
@@ -22,7 +22,6 @@
 </template>
 
 <script>
-
   import {
     mapActions
   } from 'vuex'
@@ -36,7 +35,6 @@
     data () {
       return {
         username: '',
-        password: '',
         errorMsg: ''
       }
     },
@@ -46,22 +44,19 @@
         e.preventDefault()
         if (this.validate()) {
           // 调用登录接口
-          this.login({
-            username: this.username,
-            password: this.password
-          })
-            .then(() => {
-              this.$router.replace('/app')
-            })
+          // this.login({
+          //   username: this.username,
+          //   password: this.password
+          // })
+          // .then(() => {
+          //   this.$router.replace('/app')
+          // })
         }
       },
       validate () {
+        console.log(this.username);
         if (!this.username.trim()) {
           this.errorMsg = '姓名不能不能为空'
-          return false
-        }
-        if (!this.password.trim()) {
-          this.errorMsg = '密码不能为空'
           return false
         }
         this.errorMsg = ''
@@ -92,10 +87,9 @@
       padding-left 10px
       border 1px solid #ddd;/*no*/
 
-    .login-btn
+    .btn-login
       margin-top 50px
       width 95%
       height 70px
-      background-color themeColor
-      color #fff
+      font-size 18px;/*no*/
 </style>
