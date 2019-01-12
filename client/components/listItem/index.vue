@@ -5,9 +5,7 @@
             fjasdiopfjasdpoi发泡地方就富士达皮杰泡地方就富士达皮杰泡地方就富士达皮杰
           </div>
           <div class="col-2">
-            <div class="tag">
-              精华
-            </div>
+            <tag cnt="精华"/>
           </div>
         </div>
         <div class="content">
@@ -34,7 +32,9 @@
 </template>
 
 <script>
+  import tag from '../tag/index.vue'
   export default {
+    components: {tag},
     props: {
       data: Object
     },

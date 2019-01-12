@@ -64,12 +64,12 @@
       },
       discuss () {
         if (!this.discussCnt.trim()) {
-         // notify({
-        //   content: '请输入评论内容'
-        // })
-          return
+          // notify({
+          //   content: '请输入评论内容'
+          // })
+  
         }
-        // todo 提交数据
+      // todo 提交数据
       }
     }
   }

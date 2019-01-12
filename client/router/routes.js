@@ -31,7 +31,13 @@ export default [
     path: '/my',
     name: 'my',
     props: true,
-    component: () => import(/* webpackChunkName: "todo-view" */ '../views/my/my.vue') // 添加一段注释
+    component: () => import(/* webpackChunkName: "todo-view" */ '../views/my/index/my.vue') // 添加一段注释
+  },
+  {
+    path: '/my-collect',
+    name: 'my-collect',
+    props: true,
+    component: () => import(/* webpackChunkName: "todo-view" */ '../views/my/collect/index.vue') // 添加一段注释
   },
   {
     path: '/detail',

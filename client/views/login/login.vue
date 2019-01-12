@@ -54,7 +54,7 @@
         }
       },
       validate () {
-        console.log(this.username);
+        console.log(this.username)
         if (!this.username.trim()) {
           this.errorMsg = '姓名不能不能为空'
           return false

@@ -16,9 +16,11 @@
 
     <section>
       <div>
-        <Item icon="icon-collect" title="收藏主题">
-          <span slot="right-info">100</span>
-        </Item>
+        <router-link to="/my-collect">
+          <Item icon="icon-collect" title="我的收藏">
+            <span slot="right-info">100</span>
+          </Item>
+        </router-link>
         <Item icon="icon-about" title="关于cnode"/>
         <Item icon="icon-aboutme" title="关于我"/>
       </div>
@@ -37,7 +39,7 @@
 
 <style lang="stylus" scoped>
   .top
-    background url('../../assets/images/bg.jpg') 100% no-repeat
+    background url('../../../assets/images/bg.jpg') 100% no-repeat
   .logo
     margin 20px 0
     width 200px
