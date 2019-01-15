@@ -19,6 +19,7 @@
   import nav from '@/components/nav/index.vue'
   import listItem from '@/components/listItem/index.vue'
   import ListScroll from '@/components/scroll/index.vue'
+  import {mapState, mapActions} from 'vuex'
   export default {
     metaInfo: {
       title: '首页'
@@ -26,27 +27,40 @@
     components: {listItem, ListScroll, 'v-nav': nav},
     data () {
       return {
-        dataList: [],
         navs: [
           {name: '全部', value: ''},
           {name: '精华', value: 'good'},
           {name: '分享', value: 'share'},
           {name: '问答', value: 'ask'},
           {name: '测试', value: 'dev'}
-        ]
+        ],
+        curTab: ''
       }
     },
+    asyncData ({store}) {
+
+    },
+    computed: {
+      ...mapState(['topicLists']),
+      dataList () {
+        return this.topicLists
+      }
+
+    },
     methods: {
+      ...mapActions([
+        'getTopics',
+      ]),
       changeTab (value) {
+        this.curTab = value
         console.log(value)
       },
       loadList (page) {
-        setTimeout(() => {
-          for (let index = 0; index < 10; index++) {
-            this.dataList.push({})
-          }
+        this.getTopics({
+          param: {page: page.num, tab: this.curTab, limit: 20},
+          cb: () => {
           this.$refs['mescroll'].endSuccess(this.dataList.length)
-        }, 1500)
+        }})
       }
     }
   }

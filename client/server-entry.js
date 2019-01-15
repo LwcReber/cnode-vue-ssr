@@ -12,30 +12,25 @@ export default context => {
     router.push(context.url)
 
     router.onReady(() => {
-      context.meta = app.$meta()
-      context.state = store.state
-      context.router = router
-      resolve(app)
-
-      // const mathedComponents = router.getMatchedComponents()
-      // if (!mathedComponents.length) {
-      //   return reject(new Error('no component matched'))
-      // }
-      // Promise.all(mathedComponents.map(Component => {
-      //   if (Component.asyncData) {
-      //     return Component.asyncData({
-      //       route: router.currentRoute,
-      //       router,
-      //       store
-      //     })
-      //   }
-      // })).then(data => {
-      //   // 数据请求回来后，再渲染app
-      //   context.meta = app.$meta()
-      //   context.state = store.state
-      //   context.router = router
-      //   resolve(app)
-      // })
+      const mathedComponents = router.getMatchedComponents()
+      if (!mathedComponents.length) {
+        return reject(new Error('no component matched'))
+      }
+      Promise.all(mathedComponents.map(Component => {
+        if (Component.asyncData) {
+          return Component.asyncData({
+            route: router.currentRoute,
+            router,
+            store
+          })
+        }
+      })).then(data => {
+        // 数据请求回来后，再渲染app
+        context.meta = app.$meta()
+        context.state = store.state
+        context.router = router
+        resolve(app)
+      })
     })
   })
 }

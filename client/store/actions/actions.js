@@ -18,15 +18,16 @@ export default {
       })
     }, data.time)
   },
-  fetchTodos ({ commit }) {
-    commit('startLoading')
-    return model.getAllTodos()
+  getTopics ({ commit }, {param, cb}) {
+    console.log(param)
+    return model.getTopics(param)
       .then(data => {
-        commit('endLoading')
-        commit('fillTodos', data)
+        console.log(data)
+
+        commit('fillTopics', data)
+        cb && cb()
       })
       .catch(err => {
-        commit('endLoading')
         handleError(err)
       })
   },

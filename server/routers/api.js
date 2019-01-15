@@ -1,7 +1,7 @@
 // 定义api接口
 const Router = require('koa-router')
 
-const apiRouter = new Router()
+const apiRouter = new Router({prefix: '/api'})
 
 // const validateUser = async (ctx, next) => {
 //   if (!ctx.session.user) {
@@ -20,14 +20,14 @@ const successResponse = (data) => {
 
 apiRouter
   // 获取主题列表
-  .get('/topics/:page/:tab/:limit/:mdrender?', async (ctx) => {
-    const {params} = ctx
+  .get('/topics', async (ctx) => {
+    const params = ctx.query
     const topics = await ctx.db.getTopics(params)
     ctx.body = successResponse(topics)
   })
   // 获取主题详情
   .get('/topic/:id/:mdrender?/:accesstoken?', async (ctx) => {
-    const {params} = ctx
+    const params = ctx.query
     const topic = await ctx.db.getTopicsDetail(params)
     ctx.body = successResponse(topic)
   })

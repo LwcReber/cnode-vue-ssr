@@ -3,8 +3,8 @@ export default {
     console.log(num2)
     state.count = num
   },
-  fillTodos (state, todos) {
-    state.todos = todos
+  fillTopics (state, list) {
+    state.topicLists = list
   },
   doLogin (state, userInfo) {
     state.user = userInfo

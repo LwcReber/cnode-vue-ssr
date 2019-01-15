@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
   export default {
     props: {
       styles: {
@@ -22,14 +21,14 @@
         return {
           backgroundColor: this.colorList[this.colorIndex || 0]
         }
-      },
+      }
     },
     mounted () {
 
     },
     data () {
       return {
-        colorList: ["#6bb3e6", '#eee']
+        colorList: ['#6bb3e6', '#eee']
       }
     }
   }

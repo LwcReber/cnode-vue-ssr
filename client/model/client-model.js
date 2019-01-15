@@ -32,8 +32,8 @@ const handleRequest = (request) => {
 
 export default {
   // 主题列表
-  getTopics (page, tab, limit, mdrender) {
-    return handleRequest(request.get('/topics', { params: { page, tab, limit, mdrender } }))
+  getTopics ({page, tab, limit = 10, mdrender}) {
+    return handleRequest(request.get('/api/topics', { params: { page, tab, limit, mdrender } }))
   }
   // // 主题详情
   // getTopicDetail (id, accesstoken) {
