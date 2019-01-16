@@ -36,6 +36,7 @@ serverCompiler.watch({}, (err, stats) => {
   // 这个是直接读去server-entry.js 使用该方式client路由则可以写成异步加载的方式
   // 先删除原来的
   delete require.cache[bundlePath]
+
   bundle = require('../../server-build/server-entry.js').default // require 会缓存
 
   // 使用mfs的时候，webpack打包的文件会写到内存里面，所以会导致读取不到bundlePath,这个时候需要把client的路由

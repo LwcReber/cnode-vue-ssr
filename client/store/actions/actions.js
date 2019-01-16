@@ -19,11 +19,8 @@ export default {
     }, data.time)
   },
   getTopics ({ commit }, {param, cb}) {
-    console.log(param)
     return model.getTopics(param)
       .then(data => {
-        console.log(data)
-
         commit('fillTopics', data)
         cb && cb()
       })

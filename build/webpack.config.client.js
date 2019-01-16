@@ -2,7 +2,7 @@ const path = require('path')
 const HTMLPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-// const ExtractPlugin = require('extract-text-webpack-plugin')
+const ExtractPlugin = require('extract-text-webpack-plugin')
 const baseConfig = require('./webpack.config.base')
 const VueClientPlugin = require('vue-server-renderer/client-plugin')
 // const cdnConfig = require('../app.config').cdn
@@ -34,7 +34,7 @@ const devServer = {
   compress: true,
   // 跨域处理
   proxy: {
-    '/api': 'http://127.0.0.1:3333',
+    '/api': 'http://127.0.0.1:3333'
   },
   hot: true
 }
@@ -62,7 +62,7 @@ if (isDev) {
       publicPath: '/public/'
     },
     plugins: defaultPluins.concat([
-      // new ExtractPlugin('styles.[contentHash:8].css'),
+      new ExtractPlugin('styles.[contentHash:8].css'),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor'
       }),

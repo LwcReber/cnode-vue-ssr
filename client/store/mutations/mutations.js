@@ -4,7 +4,7 @@ export default {
     state.count = num
   },
   fillTopics (state, list) {
-    state.topicLists = list
+    state.topicLists = [...state.topicLists, ...list]
   },
   doLogin (state, userInfo) {
     state.user = userInfo

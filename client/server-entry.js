@@ -1,6 +1,5 @@
 import createApp from './create-app'
 
-// context 就是server-render 的context
 export default context => {
   return new Promise((resolve, reject) => {
     const { app, router, store } = createApp()
@@ -12,11 +11,12 @@ export default context => {
     router.push(context.url)
 
     router.onReady(() => {
-      const mathedComponents = router.getMatchedComponents()
-      if (!mathedComponents.length) {
+      const matchedComponents = router.getMatchedComponents()
+
+      if (!matchedComponents.length) {
         return reject(new Error('no component matched'))
       }
-      Promise.all(mathedComponents.map(Component => {
+      Promise.all(matchedComponents.map(Component => {
         if (Component.asyncData) {
           return Component.asyncData({
             route: router.currentRoute,
@@ -25,7 +25,6 @@ export default context => {
           })
         }
       })).then(data => {
-        // 数据请求回来后，再渲染app
         context.meta = app.$meta()
         context.state = store.state
         context.router = router

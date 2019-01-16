@@ -49,7 +49,7 @@
     },
     methods: {
       ...mapActions([
-        'getTopics',
+        'getTopics'
       ]),
       changeTab (value) {
         this.curTab = value
@@ -59,8 +59,8 @@
         this.getTopics({
           param: {page: page.num, tab: this.curTab, limit: 20},
           cb: () => {
-          this.$refs['mescroll'].endSuccess(this.dataList.length)
-        }})
+            this.$refs['mescroll'].endSuccess(this.dataList.length)
+          }})
       }
     }
   }
