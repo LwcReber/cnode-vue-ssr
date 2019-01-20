@@ -2,30 +2,30 @@
   <div class="listItem" @click="toDetail">
         <div class="row title no-gutters">
           <div class="col one-line">
-            fjasdiopfjasdpoi发泡地方就富士达皮杰泡地方就富士达皮杰泡地方就富士达皮杰
+            {{data.title}}
           </div>
           <div class="col-2">
-            <tag cnt="精华"/>
+            <tag v-if="data.tab" :cnt="tags[data.tab]"/>
           </div>
         </div>
         <div class="content">
           <div class="two-line">
-            内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+            {{data.content}}
           </div>
         </div>
         <div class="row user no-gutters align-items-center">
           <div class="col-4 row align-items-center no-gutters">
-            <img class="logo" src="http://img0.imgtn.bdimg.com/it/u=4199990901,4162160503&fm=26&gp=0.jpg" alt="">
-            <span class="name">reber</span>
+            <img class="logo" :src="data.author.avatar_url" alt="">
+            <span class="name">{{data.author.loginname}}</span>
           </div>
           <div class="col-4 row align-items-center justify-content-center no-gutters">
               <i class="iconfont icon-eyes"></i>
-              <span class="count">100</span>
+              <span class="count">{{data.visit_count}}</span>
               <i class="iconfont icon-message"></i>
-              <span class="count">100</span>
+              <span class="count">{{data.reply_count}}</span>
           </div>
           <div class="col-4 taRig">
-            1个小时前
+            {{data.create_at}}
           </div>
         </div>
       </div>
@@ -37,6 +37,11 @@
     components: {tag},
     props: {
       data: Object
+    },
+    data () {
+      return {
+        tags: {'share': '分享', 'good': '精华', 'job': '招聘', 'ask': '问答'}
+      }
     },
     methods: {
       toDetail () {

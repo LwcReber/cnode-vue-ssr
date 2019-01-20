@@ -7,13 +7,14 @@ const request = axios.create({
   baseURL: 'https://cnodejs.org/api/v1' // 注意字段名 别写错大小写
 })
 
-const createError = (message) => {
-  const err = new Error(message)
-  err.code = 500
-  return err
-}
+// const createError = (message) => {
+//   const err = new Error(message)
+//   err.code = 500
+//   return err
+// }
 
 const handleRequest = (resp) => {
+  console.log(resp.success)
   return resp.data
 }
 

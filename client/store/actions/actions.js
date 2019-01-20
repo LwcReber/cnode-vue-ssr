@@ -22,7 +22,7 @@ export default {
     return model.getTopics(param)
       .then(data => {
         commit('fillTopics', data)
-        cb && cb()
+        cb && cb(data)
       })
       .catch(err => {
         handleError(err)

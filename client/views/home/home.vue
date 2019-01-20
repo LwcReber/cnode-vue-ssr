@@ -6,7 +6,7 @@
     <!-- content -->
     <ListScroll  class="scroller"  :upCallback="loadList" ref="mescroll" warpId="index_scroll" id="index_scroll">
       <div>
-        <listItem v-for="(item, idx) in dataList" :key="idx"/>
+        <listItem :data="item" v-for="(item, idx) in datas[tab]" :key="idx"/>
       </div>
     </ListScroll>
 
@@ -27,6 +27,9 @@
     components: {listItem, ListScroll, 'v-nav': nav},
     data () {
       return {
+        datas: {
+          'all': [], 'share': [], 'ask': [], 'good': [], 'dev': []
+        },
         navs: [
           {name: '全部', value: ''},
           {name: '精华', value: 'good'},
@@ -44,7 +47,16 @@
       ...mapState(['topicLists']),
       dataList () {
         return this.topicLists
+      },
+      tab () {
+        let tab = this.curTab
+        if (tab === '') {
+          tab = 'all'
+        }
+        return tab
       }
+    },
+    mounted () {
 
     },
     methods: {
@@ -53,12 +65,17 @@
       ]),
       changeTab (value) {
         this.curTab = value
-        console.log(value)
+        if (this.datas[this.tab].length === 0) {
+          this.$refs.mescroll.resetUpScroll()
+        }
       },
       loadList (page) {
         this.getTopics({
           param: {page: page.num, tab: this.curTab, limit: 20},
-          cb: () => {
+          cb: (data) => {
+            console.log(this.datas[this.tab])
+
+            this.datas[this.tab] = [...this.datas[this.tab], ...data]
             this.$refs['mescroll'].endSuccess(this.dataList.length)
           }})
       }
