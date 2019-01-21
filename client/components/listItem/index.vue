@@ -5,7 +5,7 @@
             {{data.title}}
           </div>
           <div class="col-2">
-            <tag v-if="data.tab" :cnt="tags[data.tab]"/>
+            <tag v-if="data.tab && data.tab !== 'dev'" :cnt="tags[data.tab]"/>
           </div>
         </div>
         <div class="content">
@@ -14,24 +14,27 @@
           </div>
         </div>
         <div class="row user no-gutters align-items-center">
-          <div class="col-4 row align-items-center no-gutters">
-            <img class="logo" :src="data.author.avatar_url" alt="">
-            <span class="name">{{data.author.loginname}}</span>
+          <div class="col-1 row align-items-center no-gutters">
+              <img class="logo" :src="data.author.avatar_url" alt="">
           </div>
-          <div class="col-4 row align-items-center justify-content-center no-gutters">
+          <div class="col-2 row align-items-center no-gutters ">
+              <div class="name one-line">{{data.author.loginname}}</div>
+          </div>
+          <div class="col-5 row align-items-center justify-content-center no-gutters">
               <i class="iconfont icon-eyes"></i>
               <span class="count">{{data.visit_count}}</span>
               <i class="iconfont icon-message"></i>
               <span class="count">{{data.reply_count}}</span>
           </div>
           <div class="col-4 taRig">
-            {{data.create_at}}
+            {{time}}
           </div>
         </div>
       </div>
 </template>
 
 <script>
+  import util from '@/util/util';
   import tag from '../tag/index.vue'
   export default {
     components: {tag},
@@ -41,6 +44,13 @@
     data () {
       return {
         tags: {'share': '分享', 'good': '精华', 'job': '招聘', 'ask': '问答'}
+      }
+    },
+    computed: {
+      time () {
+        let timeStamp = (new Date(this.data.create_at)).valueOf()
+        const timeStr = util.formatMsgTime(timeStamp)
+        return timeStr
       }
     },
     methods: {

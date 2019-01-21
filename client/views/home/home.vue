@@ -4,7 +4,7 @@
     <v-nav class="head" :list="navs" @changeTab="changeTab"/>
 
     <!-- content -->
-    <ListScroll  class="scroller"  :upCallback="loadList" ref="mescroll" warpId="index_scroll" id="index_scroll">
+    <ListScroll  class="scroller" :upCallback="loadList" ref="mescroll" warpId="index_scroll" id="index_scroll">
       <div>
         <listItem :data="item" v-for="(item, idx) in datas[tab]" :key="idx"/>
       </div>
@@ -65,6 +65,7 @@
       ]),
       changeTab (value) {
         this.curTab = value
+        this.$refs.mescroll.scrollTo(0, 1)
         if (this.datas[this.tab].length === 0) {
           this.$refs.mescroll.resetUpScroll()
         }
@@ -73,8 +74,9 @@
         this.getTopics({
           param: {page: page.num, tab: this.curTab, limit: 20},
           cb: (data) => {
-            console.log(this.datas[this.tab])
-
+            if (page.num == 1) {
+              this.datas[this.tab] = []
+            }
             this.datas[this.tab] = [...this.datas[this.tab], ...data]
             this.$refs['mescroll'].endSuccess(this.dataList.length)
           }})
