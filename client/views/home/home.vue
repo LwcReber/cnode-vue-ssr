@@ -74,7 +74,7 @@
         this.getTopics({
           param: {page: page.num, tab: this.curTab, limit: 20},
           cb: (data) => {
-            if (page.num == 1) {
+            if (page.num === 1) {
               this.datas[this.tab] = []
             }
             this.datas[this.tab] = [...this.datas[this.tab], ...data]
