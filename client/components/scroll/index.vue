@@ -39,7 +39,7 @@ export default {
     },
     upAuto: {
       type: Boolean,
-      default: true
+      default: false
     },
     warpId: {
       type: String,

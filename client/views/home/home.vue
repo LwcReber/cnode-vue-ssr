@@ -41,7 +41,7 @@
       }
     },
     asyncData ({store}) {
-
+      return store.dispatch('getTopics', {param: {page: 1, tab: this.curTab, limit: 20}})
     },
     computed: {
       ...mapState(['topicLists']),
@@ -57,7 +57,7 @@
       }
     },
     mounted () {
-
+      console.log('fsdfds')
     },
     methods: {
       ...mapActions([

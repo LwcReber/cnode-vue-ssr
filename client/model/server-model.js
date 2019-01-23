@@ -5,7 +5,7 @@ const db = createDb(config.db.appId, config.db.appKey)
 
 // 服务端渲染做一些获取数据的操作
 export default {
-  getAllTodos () {
-    return db.getAllTodos()
+  getTopics () {
+    return db.getTopics({page: 1, tab: '', limit: 20})
   }
 }

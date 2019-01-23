@@ -2,7 +2,7 @@ import model from 'model'
 import bus from '../../util/bus'
 
 const handleError = (err) => {
-  // console.log(err)
+  console.log(err)
   if (err.code === 401) {
     // 使用新vue对象，事件总线，触发一个事件
     bus.$emit('auth')
@@ -20,7 +20,7 @@ export default {
   },
   getTopics ({ commit }, {param, cb}) {
     return model.getTopics(param)
-      .then(data => {
+      .then(({data}) => {
         commit('fillTopics', data)
         cb && cb(data)
       })
