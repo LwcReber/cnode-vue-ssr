@@ -31,7 +31,7 @@
       ...mapState(['topicLists']),
       dataList () {
         return this.topicLists
-      },
+      }
     },
     asyncData ({store}) {
       return store.dispatch('getTopics', {param: {page: 1, tab: this.tab, limit: 20}})

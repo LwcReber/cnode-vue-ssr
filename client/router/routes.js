@@ -1,4 +1,12 @@
 import home from '../views/home/home.vue'
+import hire from '../views/hire/hire.vue'
+import publish from '../views/publish/publish.vue'
+import message from '../views/message/message.vue'
+import my from '../views/my/index/my.vue'
+import myCollect from '../views/my/collect/index.vue'
+import detail from '../views/detail/index.vue'
+import login from '../views/login/login.vue'
+
 export default [
   {
     path: '/',
@@ -13,41 +21,41 @@ export default [
     path: '/hire',
     name: 'hire',
     props: true,
-    component: () => import('../views/hire/hire.vue') // 添加一段注释
+    component: hire // 添加一段注释
   },
   {
     path: '/publish',
     name: 'publish',
     props: true,
-    component: () => import('../views/publish/publish.vue') // 添加一段注释
+    component: publish
   },
   {
     path: '/message',
     name: 'message',
     props: true,
-    component: () => import('../views/message/message.vue') // 添加一段注释
+    component: message
   },
   {
     path: '/my',
     name: 'my',
     props: true,
-    component: () => import('../views/my/index/my.vue') // 添加一段注释
+    component: my
   },
   {
     path: '/my-collect',
     name: 'my-collect',
     props: true,
-    component: () => import('../views/my/collect/index.vue') // 添加一段注释
+    component: myCollect
   },
   {
     path: '/detail',
     name: 'detail',
     props: true,
-    component: () => import('../views/detail/index.vue') // 添加一段注释
+    component: detail
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/login/login.vue')
+    component: login
   }
 ]
