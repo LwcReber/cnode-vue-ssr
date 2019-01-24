@@ -57,7 +57,11 @@
       }
     },
     mounted () {
-      console.log('fsdfds')
+      if (this.dataList.length > 0) {
+        this.datas[this.tab] = [...this.dataList]
+      } else {
+        this.$refs.mescroll.resetUpScroll()
+      }
     },
     methods: {
       ...mapActions([
@@ -78,7 +82,7 @@
               this.datas[this.tab] = []
             }
             this.datas[this.tab] = [...this.datas[this.tab], ...data]
-            this.$refs['mescroll'].endSuccess(this.dataList.length)
+            this.$refs['mescroll'].endSuccess(this.datas[this.tab].length)
           }})
       }
     }

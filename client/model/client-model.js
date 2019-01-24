@@ -9,7 +9,6 @@ const handleRequest = (request) => {
   return new Promise((resolve, reject) => {
     request.then(resp => {
       const data = resp.data
-
       if (!data) {
         return reject(createError(400, 'no data'))
       }
@@ -17,7 +16,7 @@ const handleRequest = (request) => {
       if (!data.success) {
         return reject(createError(400, data.message))
       }
-      resolve(data.data)
+      resolve(data)
     }).catch(err => {
       const resp = err.response
       if (resp.status === 401) {

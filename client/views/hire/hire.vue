@@ -2,7 +2,7 @@
   <div>
     <ListScroll  class="scroller"  :upCallback="loadList" ref="mescroll" warpId="hire_scroll" id="hire_scroll">
       <div>
-        <listItem v-for="(item, idx) in dataList" :key="idx"/>
+        <listItem :data="item" v-for="(item, idx) in datas" :key="idx"/>
       </div>
     </ListScroll>
 
@@ -14,6 +14,7 @@
 <script>
   import listItem from '@/components/listItem/index.vue'
   import ListScroll from '@/components/scroll/index.vue'
+  import {mapState, mapActions} from 'vuex'
 
   export default {
     metaInfo: {
@@ -22,17 +23,40 @@
     components: {listItem, ListScroll},
     data () {
       return {
-        dataList: []
+        datas: [],
+        tab: 'job'
+      }
+    },
+    computed: {
+      ...mapState(['topicLists']),
+      dataList () {
+        return this.topicLists
+      },
+    },
+    asyncData ({store}) {
+      return store.dispatch('getTopics', {param: {page: 1, tab: this.tab, limit: 20}})
+    },
+    mounted () {
+      if (this.dataList.length > 0) {
+        this.datas = [...this.dataList]
+      } else {
+        this.$refs.mescroll.resetUpScroll()
       }
     },
     methods: {
+      ...mapActions([
+        'getTopics'
+      ]),
       loadList (page) {
-        setTimeout(() => {
-          for (let index = 0; index < 10; index++) {
-            this.dataList.push({})
-          }
-          this.$refs['mescroll'].endSuccess(this.dataList.length)
-        }, 1500)
+        this.getTopics({
+          param: {page: page.num, tab: this.tab, limit: 20},
+          cb: (data) => {
+            if (page.num === 1) {
+              this.datas = []
+            }
+            this.datas = [...this.datas, ...data]
+            this.$refs['mescroll'].endSuccess(this.datas.length)
+          }})
       }
     }
   }

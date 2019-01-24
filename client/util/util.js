@@ -12,8 +12,8 @@ let util = {
 
     let milliseconds = 0
     let timeSpanStr
-
-    milliseconds = nowNew - timespan
+    // 需要转化为正数，不会出现未来的时间
+    milliseconds = Math.abs(nowNew - timespan)
 
     if (milliseconds <= 1000 * 60 * 1) {
       timeSpanStr = '刚刚'

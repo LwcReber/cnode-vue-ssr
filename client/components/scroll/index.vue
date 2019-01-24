@@ -60,6 +60,10 @@ export default {
     size: {
       type: Number,
       default: 8
+    },
+    num: {
+      type: Number,
+      default: 1
     }
   },
   data () {
@@ -81,7 +85,7 @@ export default {
         use: self.upUse,
         auto: self.upAuto,
         callback: self.upCallback, // 上拉回调
-        page: {size: this.size}, // 可配置每页8条数据,默认30
+        page: {size: this.size, num: this.num}, // 可配置每页8条数据,默认30
         toTop: { // 配置回到顶部按钮
           src: totop, // 默认滚动到1000px显示,可配置offset修改
           offset: 1000,
