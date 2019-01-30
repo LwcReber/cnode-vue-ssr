@@ -3,14 +3,9 @@ const Router = require('koa-router')
 
 const apiRouter = new Router({prefix: '/api'})
 
-// const validateUser = async (ctx, next) => {
-//   if (!ctx.session.user) {
-//     ctx.status = 401
-//     ctx.body = 'new login'
-//   } else {
-//     await next()
-//   }
-// }
+const validateUser = async (ctx, next) => {
+  console.log(ctx, '-----')
+}
 // // 所有请求都添加请求登录校验
 // apiRouter.use(validateUser)
 
@@ -64,19 +59,19 @@ apiRouter
     ctx.body = successResponse(data)
   })
   // 用户详情
-  .get('/getUser/:loginname', async (ctx) => {
+  .get('/getUser/:loginname', validateUser, async (ctx) => {
     const {params} = ctx
     const topics = await ctx.db.getUser(params)
     ctx.body = successResponse(topics)
   })
   // 校验用户的accesstoken, 用于登录
-  .post('/checkUser', async (ctx) => {
+  .post('/login', validateUser, async (ctx) => {
     const data = await ctx.db.checkUser(ctx.request.body)
     ctx.body = successResponse(data)
   })
   // 获取未读消息数
   .get('/getMsgCount/:accesstoken', async (ctx) => {
-    const {params} = ctx
+    const params = ctx.query
     const data = await ctx.db.getMsgCount(params)
     ctx.body = successResponse(data)
   })

@@ -14,7 +14,6 @@ const request = axios.create({
 // }
 
 const handleRequest = (resp) => {
-  console.log(resp.success)
   return resp.data
 }
 

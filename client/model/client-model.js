@@ -19,9 +19,9 @@ const handleRequest = (request) => {
       resolve(data)
     }).catch(err => {
       const resp = err.response
-      if (resp.status === 401) {
+      if (resp.success === false) {
         // 传给actions处理
-        reject(createError(401, 'need auth'))
+        reject(createError(401, resp.error_msg))
       } else if (resp.status === 400) {
         reject(createError(400))
       }
@@ -33,14 +33,17 @@ export default {
   // 主题列表
   getTopics ({page, tab, limit = 10, mdrender}) {
     return handleRequest(request.get('/api/topics', { params: { page, tab, limit, mdrender } }))
-  }
+  },
   // // 主题详情
   // getTopicDetail (id, accesstoken) {
   //   return handleRequest(request.get('/api/topicDetail', {id, accesstoken}))
   // },
-  // login (username, password) {
-  //   return handleRequest(request.post('/user/login', {username, password}))
-  // },
+  login (accesstoken) {
+    return handleRequest(request.post('/api/login', { accesstoken }))
+  },
+  getUserInfo (loginName) {
+    return handleRequest(request.post('/api/getUser', { loginName }))
+  }
   // updateTodo (id, todo) {
   //   return handleRequest(request.put(`/api/todo/${id}`, todo))
   // },

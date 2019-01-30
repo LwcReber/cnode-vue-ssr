@@ -3,10 +3,10 @@
     <section class="top">
       <div class="taCen">
         <div>
-          <img class="logo" src="http://img5.imgtn.bdimg.com/it/u=832192736,1053576081&fm=26&gp=0.jpg" alt="">
+          <img class="logo" :src="userInfo.avatar_url" alt="">
         </div>
         <div class="name">
-          Reber
+          {{userInfo.loginname}}
         </div>
         <div class="count">
           积分：9
@@ -32,8 +32,27 @@
 
 <script>
   import Item from './component/item.vue'
+  import {
+    mapState, mapActions
+  } from 'vuex'
   export default {
-    components: {Item}
+    components: {Item},
+    data () {
+      return {
+      }
+    },
+    computed: {
+      ...mapState(['user', 'userInfo'])
+    },
+    mounted () {
+      if (this.user.loginame) {
+        this.getUserInfo({loginName: this.user.loginname})
+      }
+
+    },
+    methods: {
+        ...mapActions(['getUserInfo'])
+    }
   }
 </script>
 

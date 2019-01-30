@@ -9,6 +9,9 @@ export default {
   doLogin (state, userInfo) {
     state.user = userInfo
   },
+  getUserInfo (state, userInfo) {
+    state.userInfo = userInfo
+  },
   addTodo (state, todo) {
     state.todos.unshift(todo)
   },

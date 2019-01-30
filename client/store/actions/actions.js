@@ -82,14 +82,13 @@ export default {
         handleError(err)
       })
   },
-  login ({commit}, { username, password }) {
+  login ({commit}, { accessToken }) {
     commit('startLoading')
-    console.log(username)
     return new Promise((resolve, reject) => {
-      model.login(username, password)
+      model.login(accessToken)
         .then(data => {
-          commit('endLoading')
           commit('doLogin', data)
+          commit('endLoading')
           // notify({content: '登录成功'})
           resolve()
         }).catch(err => {
@@ -97,6 +96,18 @@ export default {
           // notify({
           //   content: '抱歉，登录失败，请确认用户名或者密码是否正确'
           // })
+          handleError(err)
+          reject(err)
+        })
+    })
+  },
+  getUserInfo ({commit}, {loginName}) {
+    return new Promise((resolve, reject) => {
+      model.getUserInfo(loginName)
+        .then(data => {
+          commit('getUserInfo', data)
+          resolve()
+        }).catch(err => {
           handleError(err)
           reject(err)
         })

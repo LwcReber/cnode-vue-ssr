@@ -10,7 +10,7 @@
             type="text"
             class="login-input"
             placeholder="请输入accesstoken"
-            v-model="username"
+            v-model="accessToken"
           >
         </div>
         <div>
@@ -34,7 +34,7 @@
     },
     data () {
       return {
-        username: '',
+        accessToken: '',
         errorMsg: ''
       }
     },
@@ -44,18 +44,17 @@
         e.preventDefault()
         if (this.validate()) {
           // 调用登录接口
-          // this.login({
-          //   username: this.username,
-          //   password: this.password
-          // })
-          // .then(() => {
-          //   this.$router.replace('/app')
-          // })
+          this.login({
+            accessToken: this.accessToken,
+          })
+          .then(() => {
+            this.$router.replace({name: 'my'})
+          })
         }
       },
       validate () {
-        console.log(this.username)
-        if (!this.username.trim()) {
+        console.log(this.accessToken)
+        if (!this.accessToken.trim()) {
           this.errorMsg = '姓名不能不能为空'
           return false
         }
