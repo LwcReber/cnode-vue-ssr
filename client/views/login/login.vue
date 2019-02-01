@@ -45,11 +45,11 @@
         if (this.validate()) {
           // 调用登录接口
           this.login({
-            accessToken: this.accessToken,
+            accessToken: this.accessToken
           })
-          .then(() => {
-            this.$router.replace({name: 'my'})
-          })
+            .then(() => {
+              this.$router.replace({name: 'my'})
+            })
         }
       },
       validate () {

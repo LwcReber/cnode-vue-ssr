@@ -7,7 +7,6 @@ if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)
 }
 bus.$on('auth', () => {
-  console.log(1321312)
   router.push('/login')
 })
 

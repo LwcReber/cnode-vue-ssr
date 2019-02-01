@@ -3,8 +3,21 @@ const Router = require('koa-router')
 
 const apiRouter = new Router({prefix: '/api'})
 
+function isEmptyObj (data) {
+  const arr = Object.getOwnPropertyNames(data)
+  if (arr.length === 0) {
+    return true
+  }
+  return false
+}
+
 const validateUser = async (ctx, next) => {
-  console.log(ctx, '-----')
+  if (isEmptyObj(ctx.request.query) && isEmptyObj(ctx.request.body)) {
+    ctx.status = 401
+    ctx.body = 'need login'
+  } else {
+    await next()
+  }
 }
 // // 所有请求都添加请求登录校验
 // apiRouter.use(validateUser)
@@ -59,10 +72,10 @@ apiRouter
     ctx.body = successResponse(data)
   })
   // 用户详情
-  .get('/getUser/:loginname', validateUser, async (ctx) => {
-    const {params} = ctx
-    const topics = await ctx.db.getUser(params)
-    ctx.body = successResponse(topics)
+  .get('/getUser', validateUser, async (ctx) => {
+    const params = ctx.query
+    const data = await ctx.db.getUser(params)
+    ctx.body = successResponse(data)
   })
   // 校验用户的accesstoken, 用于登录
   .post('/login', validateUser, async (ctx) => {

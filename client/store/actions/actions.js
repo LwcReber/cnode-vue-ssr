@@ -104,7 +104,7 @@ export default {
   getUserInfo ({commit}, {loginName}) {
     return new Promise((resolve, reject) => {
       model.getUserInfo(loginName)
-        .then(data => {
+        .then(({data}) => {
           commit('getUserInfo', data)
           resolve()
         }).catch(err => {

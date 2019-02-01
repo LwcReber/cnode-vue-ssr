@@ -21,9 +21,9 @@ const handleRequest = (request) => {
       const resp = err.response
       if (resp.success === false) {
         // 传给actions处理
-        reject(createError(401, resp.error_msg))
-      } else if (resp.status === 400) {
-        reject(createError(400))
+        reject(createError(400, resp.error_msg))
+      } else if (resp.status === 401) {
+        reject(createError(401, '请登陆'))
       }
     })
   })
@@ -42,7 +42,7 @@ export default {
     return handleRequest(request.post('/api/login', { accesstoken }))
   },
   getUserInfo (loginName) {
-    return handleRequest(request.post('/api/getUser', { loginName }))
+    return handleRequest(request.get('/api/getUser', {params: { loginName }}))
   }
   // updateTodo (id, todo) {
   //   return handleRequest(request.put(`/api/todo/${id}`, todo))

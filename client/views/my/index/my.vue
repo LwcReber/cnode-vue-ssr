@@ -1,26 +1,26 @@
 <template>
   <div>
     <section class="top">
-      <div class="taCen">
+      <div class="taCen" @click="goLogin">
         <div>
           <img class="logo" :src="userInfo.avatar_url" alt="">
         </div>
         <div class="name">
-          {{userInfo.loginname}}
+          {{userInfo.loginname || '请登陆'}}
         </div>
         <div class="count">
-          积分：9
+          积分：{{userInfo.score || 0}}
         </div>
       </div>
     </section>
 
     <section>
       <div>
-        <router-link to="/my-collect">
+        <div @click="toRouter('/my-Collect')">
           <Item icon="icon-collect" title="我的收藏">
             <span slot="right-info">100</span>
           </Item>
-        </router-link>
+        </div>
         <Item icon="icon-about" title="关于cnode"/>
         <Item icon="icon-aboutme" title="关于我"/>
       </div>
@@ -45,13 +45,25 @@
       ...mapState(['user', 'userInfo'])
     },
     mounted () {
-      if (this.user.loginame) {
+      if (this.user.loginname) {
         this.getUserInfo({loginName: this.user.loginname})
       }
-
     },
     methods: {
-        ...mapActions(['getUserInfo'])
+      ...mapActions(['getUserInfo']),
+      goLogin () {
+         if (this.user.loginname) {
+          return
+        }
+        this.$router.push('/login')
+      },
+      toRouter (route) {
+        if (!this.user.loginname) {
+          this.$router.push('/login')
+          return
+        }
+        this.$router.push(route)
+      }
     }
   }
 </script>
