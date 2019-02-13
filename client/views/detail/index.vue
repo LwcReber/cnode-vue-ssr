@@ -1,14 +1,11 @@
 <template>
   <div>
-    <topNav>
-      <span slot="center">标题标题</span>
-    </topNav>
+    <topNav :center="title" />
 
+  <!-- 内容 -->
+    <div class="main-content" v-html="topicDetail.content"></div>
 
-    <div>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores adipisci laudantium, dolorem veniam quam molestiae voluptatum veritatis labore ullam laboriosam, unde quidem nobis blanditiis. Ea, voluptatibus nobis. Porro, aspernatur. Delectus?
-    </div>
-
+  <!-- 评论 -->
     <div class="comment">
       <div class="row no-gutters justify-content-between align-items-center">
         <div class="">
@@ -27,12 +24,14 @@
       </div>
     </div>
 
+  <!-- 是否登录 -->
     <div class="row align-items-center no-login">
       <div class="taCen col-12">
         还没登录 >> <button class="btn btn-login" @click="toLogin">马上登录</button>
       </div>
     </div>
 
+  <!-- 评论功能 -->
     <div class="discuss">
       <textarea ref="discussCnt" class="content" id="" cols="30" rows="5"></textarea>
       <button class="btn btn-bcs" @click="discuss">发布</button>
@@ -44,15 +43,40 @@
 
 <script>
   import topNav from '@/components/topNav/index.vue'
-
+  import {
+    mapState, mapActions
+  } from 'vuex'
   export default {
     components: { topNav },
     data () {
       return {
-        discussCnt: ''
+        discussCnt: '',
+        maxTitleLen: 20 // 标题最大长度
       }
     },
+    computed: {
+      ...mapState(['topicDetail']),
+      title () {
+        let title = this.$route.query.title || ''
+        if(title.length > this.maxTitleLen) {
+          return title.slice(0, this.maxTitleLen)
+        }
+        return title
+      },
+      id () {
+        return this.$route.query.id
+      },
+      accessToken () {
+        let accessToken = JSON.parse(window.localStorage.getItem('accessToken')) || false
+        return accessToken || ''
+      }
+    },
+    mounted () {
+      this.getTopicDetail({id: this.id, accessToken: this.accessToken})
+
+    },
     methods: {
+      ...mapActions(['getTopicDetail']),
       showDiscuss () {
         // 如果没有登录则去登录
         // this.toLogin()
@@ -67,7 +91,7 @@
           // notify({
           //   content: '请输入评论内容'
           // })
-  
+
         }
       // todo 提交数据
       }
@@ -76,6 +100,10 @@
 </script>
 
 <style lang="stylus" scoped>
+  .main-content
+    pading 10px
+    max-width 100%
+
   .comment
     margin-top 200px
     padding 10px 20px

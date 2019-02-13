@@ -22,8 +22,8 @@ module.exports = () => {
     async getTopics ({page, tab, limit, mdrender}) {
       return handleRequest(await request.get('/topics', {params: {page, tab, limit, mdrender: mdrender || false}}))
     },
-    async getTopicsDetail ({id}) {
-      return handleRequest(await request.get(`/topic/${id}`, {params: {mdrender: false, accesstoken: ''}}))
+    async getTopicsDetail ({id, accesstoken}) {
+      return handleRequest(await request.get(`/topic/${id}`, {params: {mdrender: true, accesstoken: accesstoken || ''}}))
     },
     async createTopics (params) {
       // 把主题归类写死为dev的测试环境

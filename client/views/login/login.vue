@@ -47,9 +47,10 @@
           this.login({
             accessToken: this.accessToken
           })
-            .then(() => {
-              this.$router.replace({name: 'my'})
-            })
+          .then(() => {
+            window.localStorage.setItem('accessToken', this.accessToken)
+            this.$router.replace({name: 'my'})
+          })
         }
       },
       validate () {

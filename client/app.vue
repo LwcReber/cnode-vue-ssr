@@ -37,7 +37,6 @@ export default {
     if (userInfo) {
       this.$store.commit('setUserInfo', JSON.parse(userInfo))
     }
-
   },
   methods: {
 

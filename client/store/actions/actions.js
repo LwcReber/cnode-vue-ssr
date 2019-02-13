@@ -28,6 +28,15 @@ export default {
         handleError(err)
       })
   },
+  getTopicDetail ({ commit }, param) {
+    return model.getTopicDetail(param)
+      .then(({data}) => {
+        commit('uddateTopicDetail', data)
+      })
+      .catch(err => {
+        handleError(err)
+      })
+  },
   getCollectTopics ({ commit }, {loginName}) {
     return model.getCollectTopic(loginName)
       .then(({data}) => {

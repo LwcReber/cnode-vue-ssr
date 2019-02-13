@@ -34,7 +34,7 @@ apiRouter
     ctx.body = successResponse(topics)
   })
   // 获取主题详情
-  .get('/topic/:id/:mdrender?/:accesstoken?', async (ctx) => {
+  .get('/topic', async (ctx) => {
     const params = ctx.query
     const topic = await ctx.db.getTopicsDetail(params)
     ctx.body = successResponse(topic)

@@ -55,7 +55,7 @@ import tag from '../tag/index.vue'
     },
     methods: {
       toDetail () {
-        this.$router.push({name: 'detail', query: {id: 1}})
+        this.$router.push({name: 'detail', query: {id: this.data.id, title: this.data.title}})
       }
     }
   }

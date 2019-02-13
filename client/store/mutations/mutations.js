@@ -18,6 +18,9 @@ export default {
   updateCollectTopic (state, data) {
     state.collectTopic = data
   },
+  uddateTopicDetail (state, data) {
+    state.topicDetail = data
+  },
   addTodo (state, todo) {
     state.todos.unshift(todo)
   },

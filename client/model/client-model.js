@@ -35,9 +35,9 @@ export default {
     return handleRequest(request.get('/api/topics', { params: { page, tab, limit, mdrender } }))
   },
   // // 主题详情
-  // getTopicDetail (id, accesstoken) {
-  //   return handleRequest(request.get('/api/topicDetail', {id, accesstoken}))
-  // },
+  getTopicDetail ({id, accesstoken}) {
+    return handleRequest(request.get('/api/topic', { params: { id, accesstoken } }))
+  },
   login (accesstoken) {
     return handleRequest(request.post('/api/login', { accesstoken }))
   },

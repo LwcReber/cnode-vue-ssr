@@ -22,8 +22,8 @@
     computed: {
       ...mapState(['collectTopic']),
       loginname () {
-        let user = JSON.parse(window.localStorage.getItem('user')) || {}
-        console.log(user);
+        let user = JSON.parse(window.localStorage.getItem('user')) || false
+        console.log(user)
         return user.loginname || ''
       }
     },
@@ -31,7 +31,7 @@
       this.getCollectTopics({loginName: this.loginname})
     },
     methods: {
-      ...mapActions(['getCollectTopics']),
+      ...mapActions(['getCollectTopics'])
     }
 
   }
