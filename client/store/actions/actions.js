@@ -28,6 +28,16 @@ export default {
         handleError(err)
       })
   },
+  getCollectTopics ({ commit }, {loginName}) {
+    return model.getCollectTopic(loginName)
+      .then(({data}) => {
+        commit('updateCollectTopic', data)
+      })
+      .catch(err => {
+        handleError(err)
+      })
+  },
+
   addTodo ({commit}, todo) {
     commit('startLoading')
     model.createTodo(todo)
@@ -87,7 +97,7 @@ export default {
     return new Promise((resolve, reject) => {
       model.login(accessToken)
         .then(data => {
-          commit('doLogin', data)
+          commit('setUer', data)
           commit('endLoading')
           // notify({content: '登录成功'})
           resolve()
@@ -105,7 +115,7 @@ export default {
     return new Promise((resolve, reject) => {
       model.getUserInfo(loginName)
         .then(({data}) => {
-          commit('getUserInfo', data)
+          commit('setUserInfo', data)
           resolve()
         }).catch(err => {
           handleError(err)

@@ -18,7 +18,7 @@
       <div>
         <div @click="toRouter('/my-Collect')">
           <Item icon="icon-collect" title="我的收藏">
-            <span slot="right-info">100</span>
+            <span slot="right-info">{{collectTopic.length || 0}}</span>
           </Item>
         </div>
         <Item icon="icon-about" title="关于cnode"/>
@@ -42,17 +42,21 @@
       }
     },
     computed: {
-      ...mapState(['user', 'userInfo'])
+      ...mapState(['user', 'userInfo', 'collectTopic'])
     },
-    mounted () {
-      if (this.user.loginname) {
-        this.getUserInfo({loginName: this.user.loginname})
+    watch: {
+      'user.loginname' () {
+        if (this.user.loginname) {
+          this.getUserInfo({loginName: this.user.loginname})
+          this.getCollectTopics({loginName: this.user.loginname})
+        }
       }
     },
+
     methods: {
-      ...mapActions(['getUserInfo']),
+      ...mapActions(['getUserInfo', 'getCollectTopics']),
       goLogin () {
-         if (this.user.loginname) {
+        if (this.user.loginname) {
           return
         }
         this.$router.push('/login')

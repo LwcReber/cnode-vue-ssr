@@ -55,10 +55,10 @@ apiRouter
     ctx.body = successResponse(data)
   })
   // 获取用户收藏的主题
-  .get('/getCollects/:loginname', async (ctx) => {
-    const {params} = ctx
-    const topics = await ctx.db.getCollectTopics(params)
-    ctx.body = successResponse(topics)
+  .get('/getCollects', async (ctx) => {
+    const params = ctx.query
+    const data = await ctx.db.getCollectTopics(params)
+    ctx.body = successResponse(data)
   })
   // 新建评论
   .post('/createReplies', async (ctx) => {

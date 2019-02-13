@@ -43,6 +43,9 @@ export default {
   },
   getUserInfo (loginName) {
     return handleRequest(request.get('/api/getUser', {params: { loginName }}))
+  },
+  getCollectTopic (loginName) {
+    return handleRequest(request.get('/api/getCollects', {params: { loginname: loginName }}))
   }
   // updateTodo (id, todo) {
   //   return handleRequest(request.put(`/api/todo/${id}`, todo))

@@ -28,6 +28,15 @@ export default {
     ...mapState(['loading'])
   },
   mounted () {
+    let user = window.localStorage.getItem('user')
+    let userInfo = window.localStorage.getItem('userInfo')
+
+    if (user) {
+      this.$store.commit('setUer', JSON.parse(user))
+    }
+    if (userInfo) {
+      this.$store.commit('setUserInfo', JSON.parse(userInfo))
+    }
 
   },
   methods: {

@@ -6,10 +6,10 @@
         </slot>
       </div>
       <div class="col-8 title">
-        <slot name="center"></slot>
+        <slot name="center">{{center}}</slot>
       </div>
       <div class="col-2">
-        <slot slot="right"></slot>
+        <slot slot="right">{{right}}</slot>
       </div>
   </div>
 </template>
@@ -17,7 +17,9 @@
 <script>
   export default {
     props: {
-      left: String
+      left: String,
+      center: String,
+      right: String
     },
     data () {
       return {

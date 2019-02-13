@@ -1,16 +1,22 @@
 export default {
   updateCount (state, { num, num2 }) {
-    console.log(num2)
     state.count = num
   },
   fillTopics (state, list) {
     state.topicLists = [...state.topicLists, ...list]
   },
-  doLogin (state, userInfo) {
+  setUer (state, userInfo) {
+    const data = JSON.stringify(userInfo)
+    window.localStorage.setItem('user', data)
     state.user = userInfo
   },
-  getUserInfo (state, userInfo) {
+  setUserInfo (state, userInfo) {
+    const data = JSON.stringify(userInfo)
+    window.localStorage.setItem('userInfo', data)
     state.userInfo = userInfo
+  },
+  updateCollectTopic (state, data) {
+    state.collectTopic = data
   },
   addTodo (state, todo) {
     state.todos.unshift(todo)
