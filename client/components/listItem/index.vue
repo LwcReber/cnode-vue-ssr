@@ -48,8 +48,7 @@ import tag from '../tag/index.vue'
     },
     computed: {
       time () {
-        let timeStamp = (new Date(this.data.create_at)).valueOf()
-        const timeStr = util.formatMsgTime(timeStamp)
+        const timeStr = util.formatMsgTime(this.data.create_at)
         return timeStr
       }
     },

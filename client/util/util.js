@@ -1,6 +1,8 @@
 let util = {
   formatMsgTime (timespan) {
-    let dateTime = new Date(timespan)
+    let timeTem = (new Date(timespan)).valueOf()
+
+    let dateTime = new Date(timeTem)
     let year = dateTime.getFullYear()
     let month = dateTime.getMonth() + 1
     let day = dateTime.getDate()

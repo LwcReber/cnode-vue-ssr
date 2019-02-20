@@ -35,7 +35,6 @@ store.subscribeAction((action, state) => {
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('before each invoked')
   next()
   // if (to.fullPath === '/app') {
   //   next({ path: '/login' })
