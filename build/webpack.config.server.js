@@ -23,7 +23,7 @@ if (isDev) {
 config = merge(baseConfig, {
   target: 'node',
   entry: path.join(__dirname, '../client/server-entry.js'),
-  devtool: 'source-map',
+  devtool: 'none', // 'source-map',
   output: {
     libraryTarget: 'commonjs2', // 输出文件打包成模块，通过module.exports打包
     filename: 'server-entry.js', // 不需要hash，因为不需要在浏览器运行，不用缓存

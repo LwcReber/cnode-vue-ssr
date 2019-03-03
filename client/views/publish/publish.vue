@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="row no-gutters form-item align-items-center">
-      <div class="col-3 form-title">主题</div>
-      <div class="col-9">
+      <div class="col-2 form-title">主题</div>
+      <div class="col-10">
         <select name="" class="type" v-model="form.type">
           <option value="share">分享</option>
           <option value="ask">问答</option>
@@ -12,8 +12,8 @@
       </div>
     </div>
     <div class="row no-gutters form-item align-items-center">
-      <div class="col-3 form-title">标题</div>
-      <div class="col-9">
+      <div class="col-2 form-title">标题</div>
+      <div class="col-10">
         <input class="title" v-model="form.title" type="text" placeholder="标题字数10字以上">
       </div>
     </div>
@@ -72,6 +72,7 @@
       font-weight bold
       font-size 16px;/*no*/
     .type, .title
+      padding: 5px
       width 100%
       height 50px
 

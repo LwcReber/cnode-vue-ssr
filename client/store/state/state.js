@@ -3,6 +3,7 @@ export default {
   topicLists: [],
   topicDetail: {},
   collectTopic: [],
+  hireList: [],
   user: {},
   userInfo: {},
   loading: false

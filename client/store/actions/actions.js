@@ -18,10 +18,15 @@ export default {
       })
     }, data.time)
   },
-  getTopics ({ commit }, {param, cb}) {
+  getTopics ({ commit }, {param, cb, type = 0}) {
+    console.log(type)
     return model.getTopics(param)
       .then(({data}) => {
-        commit('fillTopics', data)
+        if (type === 0) {
+          commit('fillTopics', data)
+        } else {
+          commit('fillHires', data)
+        }
         cb && cb(data)
       })
       .catch(err => {

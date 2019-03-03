@@ -28,13 +28,13 @@
       }
     },
     computed: {
-      ...mapState(['topicLists']),
+      ...mapState(['hireList']),
       dataList () {
-        return this.topicLists
+        return this.hireList
       }
     },
     asyncData ({store}) {
-      return store.dispatch('getTopics', {param: {page: 1, tab: this.tab, limit: 20}})
+      return store.dispatch('getTopics', {param: {page: 1, tab: 'job', limit: 20}, type: 1})
     },
     mounted () {
       if (this.dataList.length > 0) {
@@ -49,7 +49,7 @@
       ]),
       loadList (page) {
         this.getTopics({
-          param: {page: page.num, tab: this.tab, limit: 20},
+          param: {page: page.num, tab: this.tab, limit: 20, type: 1},
           cb: (data) => {
             if (page.num === 1) {
               this.datas = []

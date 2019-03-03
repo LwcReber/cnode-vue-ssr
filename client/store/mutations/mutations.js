@@ -5,6 +5,9 @@ export default {
   fillTopics (state, list) {
     state.topicLists = [...state.topicLists, ...list]
   },
+  fillHires (state, list) {
+    state.hireList = [...state.hireList, ...list]
+  },
   setUer (state, userInfo) {
     const data = JSON.stringify(userInfo)
     window.localStorage.setItem('user', data)
