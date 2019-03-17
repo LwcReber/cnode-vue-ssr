@@ -25,6 +25,9 @@
         <Item icon="icon-aboutme" title="关于我"/>
       </div>
     </section>
+
+    <button @click="signout" class="btn btn-signout">退出当前账号</button>
+
      <!-- footer -->
     <v-footer></v-footer>
   </div>
@@ -67,6 +70,11 @@
           return
         }
         this.$router.push(route)
+      },
+      signout () {
+        window.localStorage.clear()
+        this.$store.commit('resetState')
+        this.$router.replace('/login')
       }
     }
   }
@@ -88,4 +96,11 @@
     font-size 16px;/*no*/
     padding-bottom 50px
     color #222
+
+  .btn-signout
+    margin 40px auto
+    display block
+    width 300px
+    height 60px
+    border-radius 5px
 </style>

@@ -34,24 +34,54 @@ export default {
       })
   },
   getTopicDetail ({ commit }, param) {
+    commit('startLoading')
     return model.getTopicDetail(param)
       .then(({data}) => {
+        commit('endLoading')
         commit('uddateTopicDetail', data)
       })
       .catch(err => {
+        commit('endLoading')
         handleError(err)
       })
   },
   getCollectTopics ({ commit }, {loginName}) {
+    commit('startLoading')
     return model.getCollectTopic(loginName)
       .then(({data}) => {
+        commit('endLoading')
         commit('updateCollectTopic', data)
       })
       .catch(err => {
+        commit('endLoading')
         handleError(err)
       })
   },
-
+  createTopic ({commit}, topic) {
+    commit('startLoading')
+    model.createTopic(topic)
+      .then(data => {
+        commit('endLoading')
+        commit('addTodo', data)
+        // notify({
+        //   content: '你又多了一件事要做'
+        // })
+      }).catch(err => {
+        commit('endLoading')
+        handleError(err)
+      })
+  },
+  getMsgList ({commit}, accessToken) {
+    commit('startLoading')
+    model.getMsgList(accessToken)
+      .then(data => {
+        commit('endLoading')
+        commit('updateMsgList', data)
+      }).catch(err => {
+        commit('endLoading')
+        handleError(err)
+      })
+  },
   addTodo ({commit}, todo) {
     commit('startLoading')
     model.createTodo(todo)

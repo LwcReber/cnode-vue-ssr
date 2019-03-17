@@ -46,6 +46,12 @@ export default {
   },
   getCollectTopic (loginName) {
     return handleRequest(request.get('/api/getCollects', {params: { loginname: loginName }}))
+  },
+  createTopic () {
+
+  },
+  getMsgList (accesstoken) {
+    return handleRequest(request.get('/api/messages/', {params: { accesstoken }}))
   }
   // updateTodo (id, todo) {
   //   return handleRequest(request.put(`/api/todo/${id}`, todo))

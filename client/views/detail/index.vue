@@ -51,8 +51,8 @@
   import topNav from '@/components/topNav/index.vue'
   import util from '@/util/util'
   import {
-      mapState, mapActions
-    } from 'vuex'
+    mapState, mapActions
+  } from 'vuex'
   export default {
     components: { topNav },
     data () {

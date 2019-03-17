@@ -6,5 +6,6 @@ export default {
   hireList: [],
   user: {},
   userInfo: {},
+  msgData: {},
   loading: false
 }

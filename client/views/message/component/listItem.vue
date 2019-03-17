@@ -1,24 +1,31 @@
 <template>
   <div class="item">
     <div class="item-top row no-gutters align-items-center btmBor1px">
-      <img class="logo" src="http://img5.imgtn.bdimg.com/it/u=832192736,1053576081&fm=26&gp=0.jpg" alt="">
+      <img class="logo" :src="data.author.avatar_url" alt="">
       <div>
-        谁谁回复了你的主题
+        {{data.author.loginname}}回复了你的主题
       </div>
     </div>
-    <div class="item-content two-line">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad corporis rerum sunt incidunt maxime sit dolorem consequuntur, eaque omnis a tempore culpa blanditiis, laboriosam distinctio rem illo repellat eius facilis?
+    <div class="item-content two-line" v-html="data.reply.content">
     </div>
     <div class="item-time topBor1px">
-      2018-9-12 10:22
+      {{time}}
     </div>
   </div>
 </template>
 
 <script>
+  import util from '@/util/util'
+
   export default {
     props: {
       data: Object
+    },
+    computed: {
+      time () {
+        const timeStr = util.formatMsgTime(this.data.reply.create_at)
+        return timeStr
+      }
     }
   }
 </script>

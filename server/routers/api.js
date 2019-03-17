@@ -89,8 +89,8 @@ apiRouter
     ctx.body = successResponse(data)
   })
   // 获取已读和未读消息
-  .get('/getAllMsg/:accesstoken/:mdrender?', async (ctx) => {
-    const {params} = ctx
+  .get('/messages/', async (ctx) => {
+    const params = ctx.query
     const data = await ctx.db.getAllMsg(params)
     ctx.body = successResponse(data)
   })

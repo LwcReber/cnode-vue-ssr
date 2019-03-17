@@ -1,4 +1,21 @@
+
+const state = {}
+var copyState = deepClone(state) // 拷贝state对象
+function deepClone (obj) {
+  var newObj = obj instanceof Array ? [] : {}
+  for (var i in obj) {
+    newObj[i] = typeof obj[i] === 'object' ? deepClone(obj[i]) : obj[i]
+  }
+  return newObj
+}
+
 export default {
+  resetState (state) {
+    for (var i in copyState) {
+      state[i] = copyState[i] // 递归赋值
+    }
+  },
+
   updateCount (state, { num, num2 }) {
     state.count = num
   },
@@ -23,6 +40,9 @@ export default {
   },
   uddateTopicDetail (state, data) {
     state.topicDetail = data
+  },
+  updateMsgList (state, data) {
+    state.msgData = data
   },
   addTodo (state, todo) {
     state.todos.unshift(todo)

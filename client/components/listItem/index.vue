@@ -35,7 +35,7 @@
 
 <script>
   import util from '@/util/util'
-import tag from '../tag/index.vue'
+  import tag from '../tag/index.vue'
   export default {
     components: {tag},
     props: {
